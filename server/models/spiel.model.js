@@ -5,6 +5,16 @@ const mongoose = require("mongoose");
 
 // This is where we make our model
 const SpielSchema = new mongoose.Schema({
+    scriptName: {
+        type: String,
+        required: [true, "Name is required"],
+        minlength: [1, "Name is required "]
+        //name
+    },
+    isHead: {
+        type: Boolean,
+        default: false
+    },
     Element: {
         type: String,
         // "Modal", "Page"
@@ -12,17 +22,19 @@ const SpielSchema = new mongoose.Schema({
         minlength: [1, "Element is required "]
     },
     Pagearr: [],
+    //array of Pages (object{id: "",Name:""})
     Modalarr: [],
+    //array of Modals (object{id: "",Name:""})
     Snippet: {
         type: String,
-
         maxlength: [2000, "Snippet too long, 2000 chars max "]
-
+        //content of Spiel
     },
     name: {
         type: String,
         required: [true, "Name is required"],
         minlength: [1, "Name is required "]
+        //name
     },
     // 
 });
@@ -30,14 +42,3 @@ const SpielSchema = new mongoose.Schema({
 const Spiel = mongoose.model("Spiel", SpielSchema);
 // We need to export this to other areas of my project
 module.exports = Spiel;
-
-// Spiel:
-
-// Element{ Type :string (either "Modal" or Page
-// },
-// Pagearr: Type arr(array of all pages linked from this page
-// )
-// Modalarr: Type arr(array of all modals accessible on this page
-// )
-// Snippet: Type:string Max length 20000 chars
-// name: Type string
