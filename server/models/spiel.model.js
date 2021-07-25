@@ -1,14 +1,16 @@
 // bring in mongoose
 const mongoose = require("mongoose");
 
+
+
 // This is where we make our model
 const SpielSchema = new mongoose.Schema({
     Element: {
         type: String,
+        // "Modal", "Page"
         required: [true, "Element is required"],
         minlength: [1, "Element is required "]
     },
-    // title: String,
     Pagearr: [],
     Modalarr: [],
     Snippet: {
