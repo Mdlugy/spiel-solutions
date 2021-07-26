@@ -11,4 +11,6 @@ module.exports = app => {
     app.put("/api/spiels/update/:_id", SpielController.updateSpiel);
     // DELETE
     app.delete("/api/spiels/delete/:_id", SpielController.deleteSpiel);
+    // GET ALL BY SCRIPTNAME
+    app.get("/api/spiels/:scriptName", SpielController.findByScriptName);
 }
