@@ -36,3 +36,11 @@ module.exports.deleteSpiel = (req, res) => {
         .then(deletedSpiel => res.json(deletedSpiel))
         .catch(err => res.json({ message: "Something went wrong when deleting the Spiel!!", error: err }))
 }
+
+// Find all by Script Name
+module.exports.findByScriptName = (req,res) =>{
+    Spiel.find({scriptName: req.params.scriptName})
+        .then(res => res.json())
+        .catch(err => res.json(err));
+}
+

@@ -8,7 +8,6 @@ const SpielSchema = new mongoose.Schema({
     scriptName: {
         type: String,
         required: [true, "Name is required"],
-        minlength: [1, "Name is required "]
         //name
     },
     isHead: {
@@ -19,12 +18,11 @@ const SpielSchema = new mongoose.Schema({
         type: String,
         // "Modal", "Page"
         required: [true, "Element is required"],
-        minlength: [1, "Element is required "]
     },
     Pagearr: [],
-    //array of Pages (object{id: "",Name:""})
+    //array of Pages (object{id: "", name:""})
     Modalarr: [],
-    //array of Modals (object{id: "",Name:""})
+    //array of Modals (object{id: "", name:""})
     Snippet: {
         type: String,
         maxlength: [2000, "Snippet too long, 2000 chars max "]
@@ -33,7 +31,6 @@ const SpielSchema = new mongoose.Schema({
     name: {
         type: String,
         required: [true, "Name is required"],
-        minlength: [1, "Name is required "]
         //name
     },
     // 
