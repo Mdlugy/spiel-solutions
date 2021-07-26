@@ -18,7 +18,7 @@ const LinkedFrom=props=>{
     <div>
         <button onClick={togglepages}>link/create page</button>
         {props.spiel.pageArr.map((link, i)=>{return< LinkCard link = {link}/>})}     
-        <LinkForm isHidden={pageHidden} element={"Page"}/>
+        <LinkForm isHidden={pageHidden} element={"Page"} spiel={props.spiel}/>
         <button onClick={togglemodals}>link/create modal</button>
         {props.spiel.modalArr.map((link, i)=>{return< LinkCard link = {link}/>})}     
         <LinkForm isHidden={modalHidden} element={"Modal"} spiel={props.spiel}/>

@@ -1,17 +1,19 @@
 import React, { useState } from 'react'
 const LinkForm=props=>{
     const [newspiel,setNew]=useState("")
-    const [options,setoptions]=useState([{label:"test1",value:12},{label:"test2",value:13}])
+    const [options,setoptions]=useState([{name:"test1",id:12},{name:"test2",id:13}])
     const [chosen,setChosen]=useState({})
 
     // useEffect-setoptions if (props.element==="Modal"){axios.get(element where modal) filter by props.spiel.modalarr} else{axios.get(element where page) filetr by props.spiel.pagearr}
     
     const handleNew= e =>{
         //axios.push ({name:newspiel,scriptname:props.spiel.scriptname})
-        
+
         //element==="Modal"?.then axios.put({modalArr:[res]}):then axios.put({pageArr:[res]})
     }
     const handleAdd=e=>{
+        //props.spiel.(if element=modal)modalArr (if element page )pageArr 
+        //axios call set ^ chosen
         //element==="Modal"?.then axios.put({modalArr:[res]}):then axios.put({pageArr:[res]})
     }
     const onselectHandler=e =>{
