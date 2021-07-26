@@ -8,15 +8,32 @@
   justify-content: space-around;
   font-size: calc(10px + 2vmin);
   color: white;}
-.addWrapper{
+.editWrapper{
   display:flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
 }
 .formWrapper{
   display: flex;
   flex-direction: column;
   max-width: 50%;
-  margin-left: 25%;
+}
+.editNavbar{
+  display: flex;
+  flex-direction: column;
+}
+.saveAndQuit{
+  background-color: aqua;
+  color: palevioletred;
+  border: solid 1px rgb(218, 208, 201);
+  position: relative;
+  border-radius: 50%;
+  font-size: xx-small;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  top: 0px;
+  left: 0px;
 }
