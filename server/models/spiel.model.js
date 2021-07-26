@@ -14,16 +14,16 @@ const SpielSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
-    Element: {
+    element: {
         type: String,
         // "Modal", "Page"
         required: [true, "Element is required"],
     },
-    Pagearr: [],
+    pageArr: [],
     //array of Pages (object{id: "",Name:""})
-    Modalarr: [],
+    modalArr: [],
     //array of Modals (object{id: "",Name:""})
-    Snippet: {
+    snippet: {
         type: String,
         maxlength: [2000, "Snippet too long, 2000 chars max "]
         //content of Spiel
