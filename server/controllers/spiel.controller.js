@@ -38,8 +38,8 @@ module.exports.deleteSpiel = (req, res) => {
 }
 
 // Find all by Script Name
-module.exports.findByScriptName = (req,res) =>{
-    Spiel.find({scriptName: req.params.scriptName})
+module.exports.findByScriptName = (req, res) => {
+    Spiel.find({ scriptName: req.params.scriptName })
         .then(res => res.json())
         .catch(err => res.json(err));
 }
