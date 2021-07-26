@@ -8,7 +8,6 @@ const SpielSchema = new mongoose.Schema({
     scriptName: {
         type: String,
         required: [true, "Name is required"],
-        minlength: [1, "Name is required "]
         //name
     },
     isHead: {
@@ -19,7 +18,6 @@ const SpielSchema = new mongoose.Schema({
         type: String,
         // "Modal", "Page"
         required: [true, "Element is required"],
-        minlength: [1, "Element is required "]
     },
     pageArr: [],
     //array of Pages (object{id: "",Name:""})
