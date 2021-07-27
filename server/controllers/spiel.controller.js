@@ -40,24 +40,26 @@ module.exports.deleteSpiel = (req, res) => {
 // Find all by Script Name
 module.exports.findByScriptName = (req, res) => {
     Spiel.find({ scriptName: req.params.scriptName })
-        .then(res => res.json())
+        .then(spiels => res.json(spiels))
+        .then(console.log(req.params.scriptName))
         .catch(err => res.json(err));
 }
 
 // Update modalArr or pageArr of parent element
 module.exports.createLink = (req, res) => {
-    Spiel.findOne({ id: req.params.parent_id })
+    Spiel.findOneAndUpdate({ id: req.params.parent_id }, req.body, { new: true })
         .then(spiel => {
-            if (req.params.element == 'page') {
+            if (req.body.element == 'Page') {
                 spiel.pageArr.push({ id: req.params.child_id, name: req.params.child_name })
             }
-            if (req.params.element == 'modal') {
+            if (req.body.element == 'Modal') {
                 spiel.modalArr.push({ id: req.params.child_id, name: req.params.child_name })
             }
             else {
                 return { message: 'element is neither modal or page' }
             }
+            return spiel.save();
         })
-        .then(res => res.json())
+        .then(saveRes => res.json(saveRes))
         .catch(err => res.json(err));
 }
