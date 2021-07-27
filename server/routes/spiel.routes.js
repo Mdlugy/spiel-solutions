@@ -14,5 +14,5 @@ module.exports = app => {
     // GET ALL BY SCRIPTNAME
     app.get("/api/spiels/scriptName/:scriptName", SpielController.findByScriptName);
     // Find parent and add to modalArr or pageArr
-    app.put('/api/spiels/update/array/:parent_id', SpielController.createLink)
+    app.put('/api/spiels/update/array/:parent_id/', SpielController.createLink)
 }
