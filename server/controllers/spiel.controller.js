@@ -61,3 +61,19 @@ module.exports.createLink = (req, res) => {
                 .catch(err => res.json(err));
             }
 }
+
+module.exports.deleteLink = (req, res) => {
+    console.log(req.body)
+    if (req.body.element == 'Page'){
+        Spiel.findByIdAndUpdate({_id: req.params.parent_id},
+            {$pull: {pageArr: {child_id: req.body.child_id}}})
+            .then(saveRes => res.json(saveRes))
+            .catch(err => res.json(err));
+    }
+    if (req.body.element == 'Modal'){
+        Spiel.findByIdAndUpdate({_id: req.params.parent_id},
+            {$pull: {modalArr: {child_id: req.body.child_id}}})
+            .then(saveRes => res.json(saveRes))
+            .catch(err => res.json(err));
+        }
+}
