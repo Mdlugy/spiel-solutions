@@ -10,10 +10,15 @@ const Edit = props => {
     
     useEffect(()=>{
         axios.get(`http://localhost:8000/api/spiels/${props.id}`)
-        .then(res => setSpiel(res.data))
+        .then(res => setSpiel(res.data[0]))
+        
         .catch(err => console.log(err))
-    },[props.id])
+    },[props.id, spiel])
+    
 
+    const snippetSave = ()=>{
+        axios.put(`/api/spiels/update/${spiel._id}`,{snippet:spiel.snippet})
+    }
     const onChangeHandler = e =>{
         setSpiel({...spiel,[e.target.name]:e.target.value})
     }
@@ -22,7 +27,9 @@ const Edit = props => {
     <div className="editWrapper">
         <main>
         <button className="saveAndQuit" >Save and quit</button>
-            <textarea onChange={onChangeHandler} name="snippet" cols="30" rows="10">{spiel.snippet}</textarea>
+            <h1>{spiel.name}</h1>
+            <form onSubmit={snippetSave}><textarea onChange={onChangeHandler} name="snippet" cols="30" rows="10">{spiel.snippet}</textarea><div><input type="submit" value="Save" className="btn btn-info" /></div>
+</form>
         <LinkedFrom spiel={spiel} />
         </main>
         <EditNavbar spiel={spiel}/>

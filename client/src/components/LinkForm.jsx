@@ -4,7 +4,7 @@ const LinkForm=props=>{
     const [newspiel,setNew]=useState("")
     const [options,setoptions]=useState([{name:"test1",id:12},{name:"test2",id:13}])
     const [chosen,setChosen]=useState({})
-    const [error,setError]=useState({})
+    // const [error,setError]=useState({})
 
 
     // useEffect-setoptions if (props.element==="Modal"){axios.get(element where modal) filter by props.spiel.modalarr} else{axios.get(element where page) filetr by props.spiel.pagearr}
@@ -15,16 +15,16 @@ const LinkForm=props=>{
             name:newspiel.name,
             scriptName:props.spiel.scriptName})
             .then(res=>setChosen(res))
-        .catch(err=>setError(err.response.data.error.errors))
-        axios.put(`http://localhost:8000/api/spiels/update/${props.spiel._id}/${props.spiel.element}/${chosen._id}/${chosen.name}`)
+            .catch(err => console.log(err))
+            axios.put(`http://localhost:8000/api/spiels/update/${props.spiel._id}/${props.spiel.element}/${chosen._id}/${chosen.name}`)
         .then(res=>window.location.reload())
-        .catch(err=>setError(err.response.data.error.errors))
+        .catch(err => console.log(err))
     }
 
     const handleAdd=e=>{
         axios.put(`http://localhost:8000/api/spiels/update/${props.spiel._id}/${props.spiel.element}/${chosen._id}/${chosen.name}`)
         .then(res=>window.location.reload())
-        .catch(err=>setError(err.response.data.error.errors))
+        .catch(err => console.log(err))
     }
     const onselectHandler=e =>{
         

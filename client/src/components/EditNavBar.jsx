@@ -3,11 +3,11 @@ import React, { useState } from "react"
 import NavCard from "./NavCard"
 const EditNavbar = props => {
     const [links,setLinks]= useState([])
-    const [error,setError]=useState({})
+    // const [error,setError]=useState({})
     
     axios.get(`http://localhost:8000//api/spiels/${props.spiel.scriptName}`)
     .then(res=>setLinks(res))
-    .catch(err=>setError(err.response.data.error.errors))
+    .catch(err => console.log(err))
     return(
 
 <nav className="nav flex-column">
