@@ -12,7 +12,7 @@ module.exports = app => {
     // DELETE
     app.delete("/api/spiels/delete/:_id", SpielController.deleteSpiel);
     // GET ALL BY SCRIPTNAME
-    app.get("/api/spiels/:scriptName", SpielController.findByScriptName);
+    app.get("/api/spiels/scriptName/:scriptName", SpielController.findByScriptName);
     // Find parent and add to modalArr or pageArr
-    app.put('/api/spiels/update/:parent_id/:element/:child_id/:child_name', SpielController.createLink)
+    app.put('/api/spiels/update/array/:parent_id/', SpielController.createLink)
 }

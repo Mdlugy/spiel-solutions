@@ -12,7 +12,7 @@ function App() {
       <Navbar />
       <Router>
         <Home path="/" />
-        <Edit path="/edit" />
+        <Edit path="/edit/:id" />
         <One path='/view/:id' />
         <Delete path='/delete/:id' />
       </Router>

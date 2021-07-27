@@ -11,7 +11,7 @@ module.exports.createSpiel = (req, res) => {
 
 // READ ONE
 module.exports.findOneSpiel = (req, res) => {
-    Spiel.find({ _id: req.params._id })
+    Spiel.findOne({ _id: req.params._id })
         .then(singleSpiel => res.json(singleSpiel))
         .catch(err => res.json({ message: "Something went wrong when finding one Spiel!!", error: err }))
 }
@@ -38,26 +38,26 @@ module.exports.deleteSpiel = (req, res) => {
 }
 
 // Find all by Script Name
-module.exports.findByScriptName = (req,res) => {
-    Spiel.find({scriptName: req.params.scriptName})
-        .then(res => res.json())
+module.exports.findByScriptName = (req, res) => {
+    Spiel.find({ scriptName: req.params.scriptName })
+        .then(spiels => res.json(spiels))
+        .then(console.log(req.params.scriptName))
         .catch(err => res.json(err));
 }
 
 // Update modalArr or pageArr of parent element
 module.exports.createLink = (req, res) => {
-    Spiel.findOne({id: req.params.parent_id})
-    .then(spiel => {
-        if (req.params.element == 'page'){
-            spiel.pageArr.push({id: req.params.child_id, name: req.params.child_name})
+        console.log(req.body)
+        if (req.body.element == 'Page'){
+            Spiel.findByIdAndUpdate({_id: req.params.parent_id},
+                {$push:{pageArr: {child_id: req.body.child_id, child_name: req.body.child_name}}})
+                .then(saveRes => res.json(saveRes))
+                .catch(err => res.json(err));
         }
-        if (req.params.element == 'modal'){
-            spiel.modalArr.push({id: req.params.child_id, name: req.params.child_name})
-        }
-        else {
-            return {message: 'element is neither modal or page'}
-        }
-    })
-    .then(res => res.json())
-    .catch(err => res.json(err));
+        if (req.body.element == 'Modal'){
+            Spiel.findByIdAndUpdate({_id: req.params.parent_id},
+                {$push:{modalArr: {child_id: req.body.child_id, child_name: req.body.child_name}}})
+                .then(saveRes => res.json(saveRes))
+                .catch(err => res.json(err));
+            }
 }
