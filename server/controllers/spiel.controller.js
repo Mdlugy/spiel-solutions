@@ -11,7 +11,7 @@ module.exports.createSpiel = (req, res) => {
 
 // READ ONE
 module.exports.findOneSpiel = (req, res) => {
-    Spiel.find({ _id: req.params._id })
+    Spiel.findOne({ _id: req.params._id })
         .then(singleSpiel => res.json(singleSpiel))
         .catch(err => res.json({ message: "Something went wrong when finding one Spiel!!", error: err }))
 }
@@ -38,8 +38,8 @@ module.exports.deleteSpiel = (req, res) => {
 }
 
 // Find all by Script Name
-module.exports.findByScriptName = (req,res) => {
-    Spiel.find({scriptName: req.params.scriptName})
+module.exports.findByScriptName = (req, res) => {
+    Spiel.find({ scriptName: req.params.scriptName })
         .then(spiels => res.json(spiels))
         .then(console.log(req.params.scriptName))
         .catch(err => res.json(err));

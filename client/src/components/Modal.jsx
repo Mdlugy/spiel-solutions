@@ -9,13 +9,13 @@ const Modals = (props) => {
   const [spiel, setSpiel] = useState("");
   const { modals } = props;
 
-  // useEffect(() => {
-  //   axios
-  //     .get(`http://localhost:8000/api/spiels/${props.id}`)
-  //     // .then((res) => setSpiel(res.data[0]))
-  //     .then((res) => console.log(res.data))
-  //     .catch((err) => console.log(err));
-  // }, []);
+  useEffect(() => {
+    axios
+      .get(`http://localhost:8000/api/spiels/${props.id}`)
+      // .then((res) => setSpiel(res.data[0]))
+      .then((res) => console.log(res.data))
+      .catch((err) => console.log(err));
+  }, []);
 
   const handleModalClick = (e) => {
     console.log(e);
