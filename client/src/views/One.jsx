@@ -28,19 +28,13 @@ const pagesStyle = {
 
 const One = (props) => {
   const [speil, setSpiel] = useState(null);
-  const [reload, setReload] = useState(false);
 
   useEffect(() => {
     axios
       .get(`http://localhost:8000/api/spiels/${props.id}`)
-      .then((res) => setSpiel(res.data[0]))
+      .then((res) => setSpiel(res.data))
       .catch((err) => console.log(err));
-  }, [reload]);
-
-  //reload the view page when a page linki is clicked
-  const handleReload = () => {
-    setReload(!reload);
-  };
+  }, [props.id]);
 
   return (
     <>
@@ -65,15 +59,11 @@ const One = (props) => {
                 <h4>{speil.snippet}</h4>
               </div>
               <div style={pagesStyle}>
-                {speil.pages.map((page) => {
+                {speil.pages.map((page, i) => {
                   return (
-                    <>
-                      <div className="mt-2" style={{ width: "33%" }}>
-                        <Link to={`/view/${page.id}`} onClick={handleReload}>
-                          {page.name}
-                        </Link>
-                      </div>
-                    </>
+                    <div key={i} className="mt-2" style={{ width: "33%" }}>
+                      <Link to={`/view/${page.id}`}>{page.name}</Link>
+                    </div>
                   );
                 })}
               </div>
@@ -86,13 +76,9 @@ const One = (props) => {
                 gap: "1em",
               }}
             >
-              {speil.modals.map((modal) => {
-                return (
-                  <>
-                    <Modal modals={modal} />
-                  </>
-                );
-              })}
+              {speil.modals.map((modal, i) => (
+                <Modal key={i} modals={modal} />
+              ))}
             </div>
           </div>
         </>

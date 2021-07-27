@@ -6,73 +6,73 @@ const buttonStyle = {
 };
 
 const Modals = (props) => {
-  const [spiel, setSpiel] = useState("");
+  const [spiel, setSpiel] = useState(null);
+  const [id, setID] = useState(null);
   const { modals } = props;
 
-  // useEffect(() => {
-  //   axios
-  //     .get(`http://localhost:8000/api/spiels/${props.id}`)
-  //     // .then((res) => setSpiel(res.data[0]))
-  //     .then((res) => console.log(res.data))
-  //     .catch((err) => console.log(err));
-  // }, []);
-
-  const handleModalClick = (e) => {
-    console.log(e);
-  };
+  useEffect(() => {
+    axios
+      .get(`http://localhost:8000/api/spiels/${id}`)
+      .then((res) => setSpiel(res.data))
+      .catch((err) => console.log(err));
+  }, [id]);
 
   return (
     <>
       <button
         type="button"
-        class="btn btn-primary"
+        className="btn btn-primary"
         data-toggle="modal"
         data-target="#exampleModalCenter"
         style={buttonStyle}
-        onClick={(e) => handleModalClick(e)}
+        onClick={(e) => setID(modals.id)}
       >
         {modals.name}
       </button>
-
-      <div className="">
-        <div
-          class="modal fade w-100"
-          id="exampleModalCenter"
-          tabindex="-1"
-          role="dialog"
-          aria-labelledby="exampleModalCenterTitle"
-          aria-hidden="true"
-          data-backdrop="false"
-        >
+      {spiel ? (
+        <div className="">
           <div
-            class="modal-dialog modal-dialog-centered"
-            role="document"
-            style={{ marginRight: "5%", width: "23%" }}
+            className="modal fade w-100"
+            id="exampleModalCenter"
+            tabindex="-1"
+            role="dialog"
+            aria-labelledby="exampleModalCenterTitle"
+            aria-hidden="true"
+            data-backdrop="false"
           >
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">
-                  Modal title
-                </h5>
-                <button
-                  type="button"
-                  class="close"
-                  data-dismiss="modal"
-                  aria-label="Close"
-                  style={{
-                    borderRadius: "50%",
-                    backgroundColor: "red",
-                    color: "white",
-                  }}
-                >
-                  <span aria-hidden="true">&times;</span>
-                </button>
+            <div
+              className="modal-dialog modal-dialog-centered"
+              role="document"
+              style={{ marginRight: "5%", width: "23%" }}
+            >
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLongTitle">
+                    {spiel.name}
+                  </h5>
+                  <button
+                    type="button"
+                    className="close"
+                    data-dismiss="modal"
+                    aria-label="Close"
+                    style={{
+                      borderRadius: "50%",
+                      backgroundColor: "red",
+                      color: "white",
+                    }}
+                    onClick={(e) => setSpiel(null)}
+                  >
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">{spiel ? spiel.snippet : "test"}</div>
               </div>
-              <div class="modal-body">Modal body</div>
             </div>
           </div>
         </div>
-      </div>
+      ) : (
+        ""
+      )}
     </>
   );
 };
