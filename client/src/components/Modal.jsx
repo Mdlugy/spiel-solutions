@@ -11,11 +11,19 @@ const Modals = (props) => {
   const { modals } = props;
 
   useEffect(() => {
+    getSpielByModalID();
+  }, [id]);
+
+  const getSpielByModalID = () => {
     axios
       .get(`http://localhost:8000/api/spiels/${id}`)
       .then((res) => setSpiel(res.data))
       .catch((err) => console.log(err));
-  }, [id]);
+  };
+
+  const handleClick = (modalID) => {
+    setID(modalID);
+  };
 
   return (
     <>
@@ -25,12 +33,12 @@ const Modals = (props) => {
         data-toggle="modal"
         data-target="#exampleModalCenter"
         style={buttonStyle}
-        onClick={(e) => setID(modals.id)}
+        onClick={(e) => handleClick(modals.id)}
       >
         {modals.name}
       </button>
-      {spiel ? (
-        <div className="">
+      {spiel && id ? (
+        <div>
           <div
             className="modal fade w-100"
             id="exampleModalCenter"
@@ -45,9 +53,9 @@ const Modals = (props) => {
               role="document"
               style={{ marginRight: "5%", width: "23%" }}
             >
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLongTitle">
+              <div className="modal-content">
+                <div className="modal-header">
+                  <h5 className="modal-title" id="exampleModalLongTitle">
                     {spiel.name}
                   </h5>
                   <button
@@ -60,12 +68,15 @@ const Modals = (props) => {
                       backgroundColor: "red",
                       color: "white",
                     }}
-                    onClick={(e) => setSpiel(null)}
+                    onClick={(e) => {
+                      setSpiel(null);
+                      setID(null);
+                    }}
                   >
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
-                <div class="modal-body">{spiel ? spiel.snippet : "test"}</div>
+                <div className="modal-body">{spiel.snippet}</div>
               </div>
             </div>
           </div>
