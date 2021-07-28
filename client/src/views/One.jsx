@@ -75,7 +75,7 @@ const One = (props) => {
                 {spiel.pageArr.map((page, i) => {
                   return (
                     <div key={i} className="my-auto" style={{ width: "33%" }}>
-                      <Link to={`/view/${page.id}`}>{page.name}</Link>
+                      <Link to={`/view/${page.child_id}`}>{page.child_name}</Link>
                     </div>
                   );
                 })}

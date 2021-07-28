@@ -16,7 +16,7 @@ function App() {
         <Home path="/" />
         <Edit path="/edit/:id" />
         <One path="/view/:id" />
-        <Delete path="/delete/:id" />
+        <Delete path="/delete/:id/:SN" />
       </Router>
     </div>
   );
