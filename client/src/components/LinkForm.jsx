@@ -16,7 +16,7 @@ const LinkForm=props=>{
         axios.get(`http://localhost:8000/api/spiels/scriptName/${props.spiel.scriptName}`)
         .then(res => setoptions(res.data))
         .catch(err => console.log(err))
-    },[props.spiel.scriptName,add])  
+    },[props.spiel.scriptName,add])
     
         
     const handleNew = e =>{
