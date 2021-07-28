@@ -85,3 +85,10 @@ module.exports.findAllHeadSpiels = (req, res) => {
         .then(allHeadSpiels => res.json(allHeadSpiels))
         .catch(err => res.json({ message: "Something went wrong when finding all the Head Spiels!!", error: err }))
 }
+
+// Find one by scriptName & isHead:true
+module.exports.findOneHeadSpiel = (req, res) => {
+    Spiel.findOne({ scriptName: req.body.scriptName , isHead: true})
+        .then(singleSpiel => res.json(singleSpiel))
+        .catch(err => res.json({ message: "Something went wrong when finding one Spiel!!", error: err }))
+}

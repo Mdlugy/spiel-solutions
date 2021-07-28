@@ -19,4 +19,6 @@ module.exports = app => {
     app.put('/api/spiels/delete/array/:parent_id/', SpielController.deleteLink)
     // Find all heads of scripts
     app.get('/api/spiels/find/heads', SpielController.findAllHeadSpiels)
+    // Find head of one scriptName
+    app.get('/api/spiels/find/oneHead', SpielController.findOneHeadSpiel)
 }
