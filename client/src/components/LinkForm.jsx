@@ -10,15 +10,18 @@ const LinkForm=props=>{
     // useEffect-setoptions if (props.element==="Modal"){axios.get(element where modal) filter by props.spiel.modalarr} else{axios.get(element where page) filetr by props.spiel.pagearr}
     
     const handleNew= e =>{
+        e.preventDefault();
+        console.log("triggered");
         axios.post("http://localhost:8000/api/spiels/create", 
-        {
-            name:newspiel.name,
+        {   element:props.element,
+            name:newspiel,
             scriptName:props.spiel.scriptName})
-            .then(res=>setChosen(res))
+            .then(res=>alert("success"))
             .catch(err => console.log(err))
-            axios.put(`http://localhost:8000/api/spiels/update/${props.spiel._id}/${props.spiel.element}/${chosen._id}/${chosen.name}`)
-        .then(res=>window.location.reload())
-        .catch(err => console.log(err))
+
+        //     axios.put(`http://localhost:8000/api/spiels/update/${props.spiel._id}/${props.spiel.element}/${chosen._id}/${chosen.name}`)
+        // .then(res=>window.location.reload())
+        // .catch(err => console.log(err))
     }
 
     const handleAdd=e=>{
@@ -36,6 +39,7 @@ const LinkForm=props=>{
 
 <div>
     {!props.isHidden?<div>
+        <p>{props.element}{newspiel}{props.spiel.scriptName}</p>
     <form onsubmit={handleNew}>
         <label for="new">create new {props.element} : </label>
         <input name="new" onChange={(e)=>setNew(e.target.value)} type="text" />

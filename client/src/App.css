@@ -37,3 +37,14 @@
   top: 0px;
   left: 0px;
 }
+.linked-from{
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px;
+}
+.LinkForm{
+  display: flex;
+  flex-direction: column;
+}

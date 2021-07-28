@@ -6,36 +6,42 @@ import LinkedFrom from "../components/LinkedFrom"
 //usestate  setSpiel axios get by id
 
 const Edit = props => {
-    const [spiel,setSpiel]= useState({})
+    const [spiel,setSpiel]= useState(null)
     
     useEffect(()=>{
         axios.get(`http://localhost:8000/api/spiels/${props.id}`)
-        .then(res => setSpiel(res.data[0]))
-        
+        .then(res => setSpiel(res.data))
         .catch(err => console.log(err))
-    },[props.id, spiel])
+    },[props.id])
     
 
-    const snippetSave = ()=>{
-        axios.put(`/api/spiels/update/${spiel._id}`,{snippet:spiel.snippet})
+    const snippetSave = e =>{
+        e.preventDefault();
+        axios.put(`http://localhost:8000/api/spiels/update/${spiel._id}`,
+        {snippet:spiel.snippet})
+        .then(alert("save successfull"))
+        .catch(err => console.log(err))
     }
     const onChangeHandler = e =>{
         setSpiel({...spiel,[e.target.name]:e.target.value})
+        console.log(spiel.snippet)
     }
     return(
-
+        <>{spiel?
     <div className="editWrapper">
         <main>
+            
         <button className="saveAndQuit" >Save and quit</button>
+        {!spiel.isHead? <button className="delete">Delete Element</button>:""}
             <h1>{spiel.name}</h1>
-            <form onSubmit={snippetSave}><textarea onChange={onChangeHandler} name="snippet" cols="30" rows="10">{spiel.snippet}</textarea><div><input type="submit" value="Save" className="btn btn-info" /></div>
+            <form onSubmit={snippetSave}><textarea onChange={onChangeHandler} name="snippet" cols="30" rows="10">{spiel.snippet? spiel.snippet: ""}</textarea><div><input type="submit" value="Save" className="btn btn-info" /></div>
 </form>
         <LinkedFrom spiel={spiel} />
         </main>
         <EditNavbar spiel={spiel}/>
 
     </div>
-    );
+    :"test"}</>);
 }
 export default Edit
 
