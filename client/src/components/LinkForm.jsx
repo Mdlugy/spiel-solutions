@@ -1,22 +1,46 @@
 import axios from 'axios'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 const LinkForm=props=>{
+    const {add, setAdd} = props;
     const [newspiel,setNew]=useState("")
-    const [options,setoptions]=useState([{name:"test1",id:12},{name:"test2",id:13}])
+    const [options,setoptions]=useState(null)
     const [chosen,setChosen]=useState({})
     // const [error,setError]=useState({})
 
-
-    // useEffect-setoptions if (props.element==="Modal"){axios.get(element where modal) filter by props.spiel.modalarr} else{axios.get(element where page) filetr by props.spiel.pagearr}
+    useEffect(()=>{
+        if (props.element==="Page")
+        axios.get(`http://localhost:8000/api/spiels/scriptName/${props.spiel.scriptName}`)
+        .then(res => setoptions(res.data))
+        .catch(err => console.log(err))
+        if (props.element==="Modal")
+        axios.get(`http://localhost:8000/api/spiels/scriptName/${props.spiel.scriptName}`)
+        .then(res => setoptions(res.data))
+        .catch(err => console.log(err))
+    },[props.spiel.scriptName,add])  
     
-    const handleNew= e =>{
+        
+    const handleNew = e =>{
         e.preventDefault();
-        console.log("triggered");
+
         axios.post("http://localhost:8000/api/spiels/create", 
-        {   element:props.element,
+        { element:props.element,
             name:newspiel,
-            scriptName:props.spiel.scriptName})
-            .then(res=>alert("success"))
+            scriptName:props.spiel.scriptName}
+        )
+            .then(res=>
+                {
+                    console.log(res.data)
+                    axios.put(`http://localhost:8000/api/spiels/update/array/${props.spiel._id}`,
+                        {
+                            child_name:res.data.name,
+                            child_id:res.data.id,
+                            element:props.element
+                        })
+                        .then(res=>setAdd(!add))
+                        .catch(err => console.log(err))
+                }
+                // window.location.reload()
+                )
             .catch(err => console.log(err))
 
         //     axios.put(`http://localhost:8000/api/spiels/update/${props.spiel._id}/${props.spiel.element}/${chosen._id}/${chosen.name}`)
@@ -25,9 +49,15 @@ const LinkForm=props=>{
     }
 
     const handleAdd=e=>{
-        axios.put(`http://localhost:8000/api/spiels/update/${props.spiel._id}/${props.spiel.element}/${chosen._id}/${chosen.name}`)
-        .then(res=>window.location.reload())
-        .catch(err => console.log(err))
+        e.preventDefault();
+        axios.put(`http://localhost:8000/api/spiels/update/array/${props.spiel._id}`,
+        {
+            child_name:chosen.name,
+            child_id:chosen.id,
+            element:props.element
+        })
+        .then(res=>setAdd(!add))
+        .catch(err => console.log(err)) 
     }
     const onselectHandler=e =>{
         
@@ -39,20 +69,22 @@ const LinkForm=props=>{
 
 <div>
     {!props.isHidden?<div>
-        <p>{props.element}{newspiel}{props.spiel.scriptName}</p>
-    <form onsubmit={handleNew}>
+
+    <form onSubmit={handleNew}>
         <label for="new">create new {props.element} : </label>
         <input name="new" onChange={(e)=>setNew(e.target.value)} type="text" />
-    <input type="submit" value="Submit" className="btn btn-info" />
+        <div><input type="submit" value="create" className="btn btn-info" /></div>
     </form>
 
-    <form onsubmit={handleAdd}>
-    <div><input type="submit" value="Submit" className="btn btn-info" /></div>
+    {options?
+    <form onSubmit={handleAdd}>
+
     <select onChange={onselectHandler}>
     <option/>
-    {options.map((option) => (<option value={option.id}>{option.name}</option> ))}
-    </select>
-    </form></div>:""}
+    {options.map((option) => (<option value={option._id}>{option.name}</option> ))}
+    </select>    <div><input type="submit" value="Submit" className="btn btn-info" /></div>
+    
+    </form>:""}</div>:""}
 </div> 
    )
 }

@@ -6,13 +6,14 @@ import LinkedFrom from "../components/LinkedFrom"
 //usestate  setSpiel axios get by id
 
 const Edit = props => {
-    const [spiel,setSpiel]= useState(null)
+    const [spiel,setSpiel]= useState({pageArr: [], modalArr: []})
+    const [add, setAdd] = useState(false);
     
     useEffect(()=>{
         axios.get(`http://localhost:8000/api/spiels/${props.id}`)
         .then(res => setSpiel(res.data))
         .catch(err => console.log(err))
-    },[props.id])
+    },[props.id, add])
     
 
     const snippetSave = e =>{
@@ -34,9 +35,10 @@ const Edit = props => {
         <button className="saveAndQuit" >Save and quit</button>
         {!spiel.isHead? <button className="delete">Delete Element</button>:""}
             <h1>{spiel.name}</h1>
-            <form onSubmit={snippetSave}><textarea onChange={onChangeHandler} name="snippet" cols="30" rows="10">{spiel.snippet? spiel.snippet: ""}</textarea><div><input type="submit" value="Save" className="btn btn-info" /></div>
+            <form onSubmit={snippetSave}><textarea onChange={onChangeHandler} value={spiel.snippet?spiel.snippet:
+        ''} name="snippet" cols="30" rows="10"/><div><input type="submit" value="Save" className="btn btn-info" /></div>
 </form>
-        <LinkedFrom spiel={spiel} />
+        <LinkedFrom add={add} setAdd={setAdd} spiel={spiel} />
         </main>
         <EditNavbar spiel={spiel}/>
 

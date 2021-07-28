@@ -9,7 +9,7 @@ const EditNavbar = props => {
         axios.get(`http://localhost:8000/api/spiels/scriptName/${props.spiel.scriptName}`)
         .then(res => setLinks(res.data))
         .catch(err => console.log(err))
-    },[props.spiel.scriptName])
+    },[props.spiel.scriptName,props.spiel.pageArr,props.spiel.modalArr])
         return(
 
 <nav className="nav flex-column">
