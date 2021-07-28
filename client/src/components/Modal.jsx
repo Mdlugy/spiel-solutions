@@ -34,9 +34,9 @@ const Modals = (props) => {
         data-toggle="modal"
         data-target="#exampleModalCenter"
         style={buttonStyle}
-        onClick={(e) => handleClick(modals.id)}
+        onClick={(e) => handleClick(modals.child_id)}
       >
-        {modals.name}
+        {modals.child_name}
       </button>
       {spiel && id ? (
         <div>

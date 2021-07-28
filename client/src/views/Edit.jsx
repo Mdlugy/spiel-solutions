@@ -1,3 +1,4 @@
+import { Link } from "@reach/router"
 import axios from "axios"
 import React, { useEffect, useState } from "react"
 import EditNavbar from "../components/EditNavBar"
@@ -33,7 +34,7 @@ const Edit = props => {
         <main>
             
         <button className="saveAndQuit" >Save and quit</button>
-        {!spiel.isHead? <button className="delete">Delete Element</button>:""}
+        {!spiel.isHead? <div><Link to={`/delete/${props.id}/${spiel.scriptName}`} value="delete" className="btn btn-danger" >Delete</Link></div>:""}
             <h1>{spiel.name}</h1>
             <form onSubmit={snippetSave}><textarea onChange={onChangeHandler} value={spiel.snippet?spiel.snippet:
         ''} name="snippet" cols="30" rows="10"/><div><input type="submit" value="Save" className="btn btn-info" /></div>

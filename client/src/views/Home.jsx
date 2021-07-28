@@ -10,7 +10,7 @@ const Home = (props) => {
   const [spiels, setSpiels] = useState(null);
   useEffect(() => {
     axios
-      .get("http://localhost:8000/api/spiels")
+      .get("http://localhost:8000/api/spiels/find/heads")
       .then((res) => setSpiels(res.data))
       .catch((err) => console.log(err));
   }, []);
