@@ -15,11 +15,16 @@ const Edit = props => {
     },[props.id])
     
 
-    const snippetSave = ()=>{
-        axios.put(`/api/spiels/update/${spiel._id}`,{snippet:spiel.snippet})
+    const snippetSave = e =>{
+        e.preventDefault();
+        axios.put(`http://localhost:8000/api/spiels/update/${spiel._id}`,
+        {snippet:spiel.snippet})
+        .then(alert("save successfull"))
+        .catch(err => console.log(err))
     }
     const onChangeHandler = e =>{
         setSpiel({...spiel,[e.target.name]:e.target.value})
+        console.log(spiel.snippet)
     }
     return(
         <>{spiel?
@@ -27,8 +32,9 @@ const Edit = props => {
         <main>
             
         <button className="saveAndQuit" >Save and quit</button>
+        {!spiel.isHead? <button className="delete">Delete Element</button>:""}
             <h1>{spiel.name}</h1>
-            <form onSubmit={snippetSave}><textarea onChange={onChangeHandler} name="snippet" cols="30" rows="10">{spiel.snippet}</textarea><div><input type="submit" value="Save" className="btn btn-info" /></div>
+            <form onSubmit={snippetSave}><textarea onChange={onChangeHandler} name="snippet" cols="30" rows="10">{spiel.snippet? spiel.snippet: ""}</textarea><div><input type="submit" value="Save" className="btn btn-info" /></div>
 </form>
         <LinkedFrom spiel={spiel} />
         </main>
