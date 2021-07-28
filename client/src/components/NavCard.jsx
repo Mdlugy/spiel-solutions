@@ -10,7 +10,8 @@ const NavCard = props=>{
         setColor('green')
     }}, [props.link.element])
     return(<div className="NavCard" style={{backgroundColor:color}} >
-        <Link to={`/edit/${props.link._id}`}>{props.link.name}</Link>
+        <Link to={`/edit/${props.link._id}`}  >{props.link.name}</Link>
     </div>)
 }
 export default NavCard
+// onClick={() => window.location.reload()}

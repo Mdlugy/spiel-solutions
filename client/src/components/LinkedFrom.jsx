@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import LinkCard from './LinkCard'
 import LinkForm from './LinkForm'
 const LinkedFrom=props=>{
+    const {add, setAdd} = props;
     const [modalHidden,setModalHidden]= useState(true)
     const [pageHidden,setPageHidden]= useState(true)
 
@@ -18,14 +19,15 @@ const LinkedFrom=props=>{
     return(
     <div className="linked-from">
         <div className="LinkForm">
-        <button onClick={togglepages}>link/create page</button>
         {props.spiel.pageArr.map((link, i)=>{return< LinkCard  element={"Page"} parent={props.spiel} link = {link}/>})}     
-        <LinkForm className="LinkForm" isHidden={pageHidden} element={"Page"} spiel={props.spiel}/>
+
+        <button onClick={togglepages}>link/create page</button>
+                <LinkForm add={add} setAdd={setAdd} className="LinkForm" isHidden={pageHidden} element={"Page"} spiel={props.spiel}/>
         
         <div className="LinkForm"></div>
-        <button onClick={togglemodals}>link/create modal</button>
         {props.spiel.modalArr.map((link, i)=>{return< LinkCard  element={"Modal"} parent={props.spiel} link = {link}/>})}     
-        <LinkForm className="LinkForm" isHidden={modalHidden} element={"Modal"} spiel={props.spiel}/>
+        <button onClick={togglemodals}>link/create modal</button>
+                <LinkForm add={add} setAdd={setAdd} className="LinkForm" isHidden={modalHidden} element={"Modal"} spiel={props.spiel}/>
         </div>
     </div>
     

@@ -27,7 +27,7 @@ const pagesStyle = {
 };
 
 const One = (props) => {
-  const [speil, setSpiel] = useState(null);
+  const [spiel, setSpiel] = useState(null);
 
   useEffect(() => {
     axios
@@ -38,11 +38,13 @@ const One = (props) => {
 
   return (
     <>
-      {speil ? (
+      {spiel ? (
         <>
           {" "}
           <div className="container mt-4" style={{ textAlign: "left" }}>
-            <Link to={`/update/${speil._id}`}>Edit</Link>
+            <Link to={`/edit/${spiel._id}`}>
+              <i class="bi bi-pencil" style={{ fontSize: "1.5em" }}></i>
+            </Link>
           </div>
           <div
             className="container mt-5"
@@ -53,15 +55,26 @@ const One = (props) => {
               style={{ display: "flex", flexDirection: "column", gap: "1em" }}
             >
               <div style={titleStyle}>
-                <h4>{speil.name}</h4>
+                <h4>{spiel.name}</h4>
               </div>
               <div style={snippetStyle}>
-                <h4>{speil.snippet}</h4>
+                <h4>{spiel.snippet}</h4>
               </div>
               <div style={pagesStyle}>
-                {speil.pages.map((page, i) => {
+                <span className="my-auto">
+                  <i
+                    onClick={() => window.history.back()}
+                    class="bi bi-arrow-left"
+                    style={{
+                      fontSize: "2em",
+                      color: "#0E6EFC",
+                      cursor: "pointer",
+                    }}
+                  ></i>
+                </span>
+                {spiel.pageArr.map((page, i) => {
                   return (
-                    <div key={i} className="mt-2" style={{ width: "33%" }}>
+                    <div key={i} className="my-auto" style={{ width: "33%" }}>
                       <Link to={`/view/${page.id}`}>{page.name}</Link>
                     </div>
                   );
@@ -76,7 +89,7 @@ const One = (props) => {
                 gap: "1em",
               }}
             >
-              {speil.modals.map((modal, i) => (
+              {spiel.modalArr.map((modal, i) => (
                 <Modal key={i} modals={modal} />
               ))}
             </div>

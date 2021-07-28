@@ -3,12 +3,13 @@ import React from 'react'
 const LinkCard=props=>{
     
     const handleDelete = e=>
-    {   e.preventDefault();
+    {   
     axios.put(`http://localhost:8000/api/spiels/delete/array/${props.parent._id}`,{
             child_id:props.link.child_id,
             element:props.element
         })
-        .then(res => console.log("successfully deleted"))
+        .then(res=>window.location.reload())
+
         .catch(err => console.log(err))
     }
 
@@ -16,7 +17,7 @@ const LinkCard=props=>{
     return(
     <div>
         {props.link.child_name}<>   </> 
-        <button onClick={handleDelete}>Unlink</button>
+        <button onClick={e=>handleDelete()}>Unlink</button>
     </div>
     )
 }
