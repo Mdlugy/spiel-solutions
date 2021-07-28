@@ -62,6 +62,7 @@ module.exports.createLink = (req, res) => {
     }
 }
 
+// Updating modalArr or pageArr of parent by removing child name and id from it.
 module.exports.deleteLink = (req, res) => {
     console.log(req.body)
     if (req.body.element == 'Page'){
@@ -76,4 +77,11 @@ module.exports.deleteLink = (req, res) => {
             .then(saveRes => res.json(saveRes))
             .catch(err => res.json(err));
         }
+}
+
+// Get all where isHead = true
+module.exports.findAllHeadSpiels = (req, res) => {
+    Spiel.find({isHead: true})
+        .then(allHeadSpiels => res.json(allHeadSpiels))
+        .catch(err => res.json({ message: "Something went wrong when finding all the Head Spiels!!", error: err }))
 }
