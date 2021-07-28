@@ -23,6 +23,7 @@ const Modals = (props) => {
 
   const handleClick = (modalID) => {
     setID(modalID);
+    console.log(spiel);
   };
 
   return (
@@ -40,42 +41,47 @@ const Modals = (props) => {
       {spiel && id ? (
         <div>
           <div
-            className="modal fade w-100"
+            className="modal fade"
             id="exampleModalCenter"
-            tabindex="-1"
+            tabIndex="-1"
             role="dialog"
             aria-labelledby="exampleModalCenterTitle"
             aria-hidden="true"
             data-backdrop="false"
+            style={{ display: "flex" }}
           >
             <div
-              className="modal-dialog modal-dialog-centered"
+              className="modal-dialog modal-dialog-centered container"
               role="document"
-              style={{ marginRight: "5%", width: "23%" }}
+              style={{ maxWidth: "25%", marginRight: "0px" }}
             >
-              <div className="modal-content">
+              <div
+                className="modal-content"
+                style={{ borderRadius: "25px", alignSelf: "flex-end" }}
+              >
                 <div className="modal-header">
                   <h5 className="modal-title" id="exampleModalLongTitle">
                     {spiel.name}
                   </h5>
-                  <button
+                  <span
                     type="button"
                     className="close"
                     data-dismiss="modal"
                     aria-label="Close"
                     style={{
-                      borderRadius: "50%",
-                      backgroundColor: "red",
-                      color: "white",
+                      color: "red",
+                      fontSize: "1.25em",
                     }}
                     onClick={(e) => {
                       setSpiel(null);
                       setID(null);
                     }}
                   >
-                    <span aria-hidden="true">&times;</span>
-                  </button>
+                    <i class="bi bi-x-square"></i>
+                  </span>
                 </div>
+                <div className="modal-body">{spiel.snippet}</div>
+                <div className="modal-body">{spiel.snippet}</div>
                 <div className="modal-body">{spiel.snippet}</div>
               </div>
             </div>
