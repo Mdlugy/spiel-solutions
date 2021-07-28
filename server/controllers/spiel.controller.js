@@ -47,19 +47,19 @@ module.exports.findByScriptName = (req, res) => {
 
 // Update modalArr or pageArr of parent element
 module.exports.createLink = (req, res) => {
-        console.log(req.body)
-        if (req.body.element == 'Page'){
-            Spiel.findByIdAndUpdate({_id: req.params.parent_id},
-                {$push:{pageArr: {child_id: req.body.child_id, child_name: req.body.child_name}}})
-                .then(saveRes => res.json(saveRes))
-                .catch(err => res.json(err));
-        }
-        if (req.body.element == 'Modal'){
-            Spiel.findByIdAndUpdate({_id: req.params.parent_id},
-                {$push:{modalArr: {child_id: req.body.child_id, child_name: req.body.child_name}}})
-                .then(saveRes => res.json(saveRes))
-                .catch(err => res.json(err));
-            }
+    console.log(req.body)
+    if (req.body.element == 'Page'){
+        Spiel.findByIdAndUpdate({_id: req.params.parent_id},
+            {$push:{pageArr: {child_id: req.body.child_id, child_name: req.body.child_name}}})
+            .then(saveRes => res.json(saveRes))
+            .catch(err => res.json(err));
+    }
+    if (req.body.element == 'Modal'){
+        Spiel.findByIdAndUpdate({_id: req.params.parent_id},
+            {$push:{modalArr: {child_id: req.body.child_id, child_name: req.body.child_name}}})
+            .then(saveRes => res.json(saveRes))
+            .catch(err => res.json(err));
+    }
 }
 
 module.exports.deleteLink = (req, res) => {
