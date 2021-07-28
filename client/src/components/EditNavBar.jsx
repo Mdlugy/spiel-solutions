@@ -1,18 +1,20 @@
 import axios from "axios"
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import NavCard from "./NavCard"
+
 const EditNavbar = props => {
-    const [links,setLinks]= useState([])
+    const [links,setLinks]= useState(null)
     // const [error,setError]=useState({})
-    
-    axios.get(`http://localhost:8000//api/spiels/${props.spiel.scriptName}`)
-    .then(res=>setLinks(res))
-    .catch(err => console.log(err))
-    return(
+    useEffect(()=>{
+        axios.get(`http://localhost:8000/api/spiels/scriptName/${props.spiel.scriptName}`)
+        .then(res => setLinks(res.data))
+        .catch(err => console.log(err))
+    },[props.spiel.scriptName])
+        return(
 
 <nav className="nav flex-column">
     click to edit
-    {links?
+    {links ?
     links.map((link, i)=>{return< NavCard link = {link}/>}):""}
 </nav>
     );
