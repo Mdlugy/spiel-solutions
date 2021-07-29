@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 const LinkForm = (props) => {
   const { add, setAdd } = props;
   const [newspiel, setNew] = useState("");
-  const [options, setOptions] = useState(null);
+  const [options, setOptions] = useState([]);
   const [chosen, setChosen] = useState({});
   const [loaded, setLoaded] = useState(false);
   // const [error,setError]=useState({})
@@ -23,15 +23,26 @@ const LinkForm = (props) => {
       )
       .then((res) => {
         if (props.element === "Page") {
-          const pagesArr = res.data;
-          setOptions(pagesArr.filter((element) => element.element === "Page"));
+          let pagesArr = res.data;
+          for(let i = 0; i < pagesArr.length; i++){
+            for(let k = 0; k < props.spiel.pageArr.length; k++){
+              if (props.spiel.pageArr[k].child_id === pagesArr[i]._id){
+                pagesArr.splice(i,1)
+            }}
+          }
+          setOptions(pagesArr.filter((element) => element.element === "Page").filter((element) => props.spiel._id !== element._id))
         } else if (props.element === "Modal") {
-          const modalsArr = res.data;
-          setOptions(
-            modalsArr.filter((element) => element.element === "Modal")
-          );
+          let modalsArr = res.data;
+          for(let i = 0; i < modalsArr.length; i++){
+            for(let k = 0; k < props.spiel.modalArr.length; k++){
+              if (props.spiel.modalArr[k].child_id === modalsArr[i]._id){
+                modalsArr.splice(i,1)
+            }}
+          }
+          setOptions(modalsArr.filter((element) => element.element === "Modal").filter((element) => props.spiel._id !== element._id))
         }
-      })
+  })
+      .then (console.log(options))
 
       .catch((err) => console.log(err));
     setLoaded(true);
@@ -53,7 +64,7 @@ const LinkForm = (props) => {
               `http://localhost:8000/api/spiels/update/array/${props.spiel._id}`,
               {
                 child_name: res.data.name,
-                child_id: res.data.id,
+                child_id: res.data._id,
                 element: props.element,
               }
             )
