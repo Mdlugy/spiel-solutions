@@ -20,5 +20,5 @@ module.exports = app => {
     // Find all heads of scripts
     app.get('/api/spiels/find/heads', SpielController.findAllHeadSpiels)
     // Find head of one scriptName
-    app.get('/api/spiels/find/oneHead', SpielController.findOneHeadSpiel)
+    app.get('/api/spiels/find/oneHead/:scriptName', SpielController.findOneHeadSpiel)
 }

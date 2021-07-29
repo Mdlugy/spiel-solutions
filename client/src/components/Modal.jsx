@@ -77,7 +77,7 @@ const Modals = (props) => {
                       setID(null);
                     }}
                   >
-                    <i class="bi bi-x-square"></i>
+                    <i className="bi bi-x-square"></i>
                   </span>
                 </div>
                 <div className="modal-body">{spiel.snippet}</div>

@@ -8,12 +8,14 @@ import ScriptInputModal from "../components/ScriptInputModal";
 
 const Home = (props) => {
   const [spiels, setSpiels] = useState(null);
+  const [add, setAdd] = useState(false);
+
   useEffect(() => {
     axios
       .get("http://localhost:8000/api/spiels/find/heads")
       .then((res) => setSpiels(res.data))
       .catch((err) => console.log(err));
-  }, []);
+  }, [add]);
 
   const handleCardLink = (spielID) => {
     navigate(`/view/${spielID}`);
@@ -22,7 +24,7 @@ const Home = (props) => {
   return (
     <>
       <div className="container mt-4" style={{ textAlign: "left" }}>
-        <ScriptInputModal />
+        <ScriptInputModal add={add} setAdd={setAdd} />
       </div>
       <div
         style={{

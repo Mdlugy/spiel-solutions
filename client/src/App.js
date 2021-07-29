@@ -7,7 +7,6 @@ import Navbar from "./components/NavBar";
 import Home from "./views/Home";
 import Edit from "./views/Edit";
 import One from "./views/One";
-import Delete from "./components/Delete";
 function App() {
   return (
     <div className="App">
@@ -16,7 +15,6 @@ function App() {
         <Home path="/" />
         <Edit path="/edit/:id" />
         <One path="/view/:id" />
-        <Delete path="/delete/:id/:SN" />
       </Router>
     </div>
   );

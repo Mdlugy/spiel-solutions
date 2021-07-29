@@ -43,7 +43,7 @@ const One = (props) => {
           {" "}
           <div className="container mt-4" style={{ textAlign: "left" }}>
             <Link to={`/edit/${spiel._id}`}>
-              <i class="bi bi-pencil" style={{ fontSize: "1.5em" }}></i>
+              <i className="bi bi-pencil" style={{ fontSize: "1.5em" }}></i>
             </Link>
           </div>
           <div
@@ -64,7 +64,7 @@ const One = (props) => {
                 <span className="my-auto">
                   <i
                     onClick={() => window.history.back()}
-                    class="bi bi-arrow-left"
+                    className="bi bi-arrow-left"
                     style={{
                       fontSize: "2em",
                       color: "#0E6EFC",

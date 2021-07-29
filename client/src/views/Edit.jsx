@@ -1,6 +1,7 @@
 import { Link } from "@reach/router"
 import axios from "axios"
 import React, { useEffect, useState } from "react"
+import Delete from "../components/Delete"
 import EditNavbar from "../components/EditNavBar"
 import LinkedFrom from "../components/LinkedFrom"
 
@@ -9,13 +10,20 @@ import LinkedFrom from "../components/LinkedFrom"
 const Edit = props => {
     const [spiel,setSpiel]= useState({pageArr: [], modalArr: []})
     const [add, setAdd] = useState(false);
+    const[scriptHead,setHead]= useState(null);
     
     useEffect(()=>{
         axios.get(`http://localhost:8000/api/spiels/${props.id}`)
-        .then(res => setSpiel(res.data))
+        .then(res =>{ setSpiel(res.data)
+            console.log("this is sn "+ res.data.scriptName)
+            axios.get(`http://localhost:8000/api/spiels/find/oneHead/${res.data.scriptName}`)
+        .then(res => setHead(res.data._id))
+        .catch(err => console.log(err))}
+        )
         .catch(err => console.log(err))
     },[props.id, add])
-    
+
+        
 
     const snippetSave = e =>{
         e.preventDefault();
@@ -32,9 +40,8 @@ const Edit = props => {
         <>{spiel?
     <div className="editWrapper">
         <main>
-            
         <button className="saveAndQuit" >Save and quit</button>
-        {!spiel.isHead? <div><Link to={`/delete/${props.id}/${spiel.scriptName}`} value="delete" className="btn btn-danger" >Delete</Link></div>:""}
+        {!spiel.isHead? <div><Delete id={props.id} redirect={scriptHead}/></div>:""}
             <h1>{spiel.name}</h1>
             <form onSubmit={snippetSave}><textarea onChange={onChangeHandler} value={spiel.snippet?spiel.snippet:
         ''} name="snippet" cols="30" rows="10"/><div><input type="submit" value="Save" className="btn btn-info" /></div>

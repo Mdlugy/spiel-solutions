@@ -3,7 +3,8 @@ import TextField from "@material-ui/core/TextField";
 import axios from "axios";
 import { navigate } from "@reach/router";
 
-const ScriptInputModal = () => {
+const ScriptInputModal = props => {
+  const {add, setAdd} = props;
   const initialFormState = {
     scriptName: "",
     element: "Page",
@@ -29,6 +30,7 @@ const ScriptInputModal = () => {
           console.log("There was an error creating a spiel");
         } else {
           console.log("A spiel was created");
+          setAdd(!add)
           navigate("/");
         }
       })
@@ -79,7 +81,7 @@ const ScriptInputModal = () => {
                   }}
                   onClick={(e) => console.log(e)}
                 >
-                  <i class="bi bi-x-square"></i>
+                  <i className="bi bi-x-square"></i>
                 </span>
               </div>
               <div className="modal-body">

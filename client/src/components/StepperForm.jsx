@@ -259,7 +259,7 @@ const StepperForm = () => {
                     fontSize: "1.25em",
                   }}
                 >
-                  <i class="bi bi-x-square"></i>
+                  <i className="bi bi-x-square"></i>
                 </span>
               </div>
               <div className="modal-body">

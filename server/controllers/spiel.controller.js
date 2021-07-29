@@ -41,22 +41,21 @@ module.exports.deleteSpiel = (req, res) => {
 module.exports.findByScriptName = (req, res) => {
     Spiel.find({ scriptName: req.params.scriptName })
         .then(spiels => res.json(spiels))
-        .then(console.log(req.params.scriptName))
         .catch(err => res.json(err));
 }
 
 // Update modalArr or pageArr of parent element
 module.exports.createLink = (req, res) => {
     console.log(req.body)
-    if (req.body.element == 'Page'){
-        Spiel.findByIdAndUpdate({_id: req.params.parent_id},
-            {$push:{pageArr: {child_id: req.body.child_id, child_name: req.body.child_name}}})
+    if (req.body.element == 'Page') {
+        Spiel.findByIdAndUpdate({ _id: req.params.parent_id },
+            { $push: { pageArr: { child_id: req.body.child_id, child_name: req.body.child_name } } })
             .then(saveRes => res.json(saveRes))
             .catch(err => res.json(err));
     }
-    if (req.body.element == 'Modal'){
-        Spiel.findByIdAndUpdate({_id: req.params.parent_id},
-            {$push:{modalArr: {child_id: req.body.child_id, child_name: req.body.child_name}}})
+    if (req.body.element == 'Modal') {
+        Spiel.findByIdAndUpdate({ _id: req.params.parent_id },
+            { $push: { modalArr: { child_id: req.body.child_id, child_name: req.body.child_name } } })
             .then(saveRes => res.json(saveRes))
             .catch(err => res.json(err));
     }
@@ -65,30 +64,30 @@ module.exports.createLink = (req, res) => {
 // Updating modalArr or pageArr of parent by removing child name and id from it.
 module.exports.deleteLink = (req, res) => {
     console.log(req.body)
-    if (req.body.element == 'Page'){
-        Spiel.findByIdAndUpdate({_id: req.params.parent_id},
-            {$pull: {pageArr: {child_id: req.body.child_id}}})
+    if (req.body.element == 'Page') {
+        Spiel.findByIdAndUpdate({ _id: req.params.parent_id },
+            { $pull: { pageArr: { child_id: req.body.child_id } } })
             .then(saveRes => res.json(saveRes))
             .catch(err => res.json(err));
     }
-    if (req.body.element == 'Modal'){
-        Spiel.findByIdAndUpdate({_id: req.params.parent_id},
-            {$pull: {modalArr: {child_id: req.body.child_id}}})
+    if (req.body.element == 'Modal') {
+        Spiel.findByIdAndUpdate({ _id: req.params.parent_id },
+            { $pull: { modalArr: { child_id: req.body.child_id } } })
             .then(saveRes => res.json(saveRes))
             .catch(err => res.json(err));
-        }
+    }
 }
 
 // Get all where isHead = true
 module.exports.findAllHeadSpiels = (req, res) => {
-    Spiel.find({isHead: true})
+    Spiel.find({ isHead: true })
         .then(allHeadSpiels => res.json(allHeadSpiels))
         .catch(err => res.json({ message: "Something went wrong when finding all the Head Spiels!!", error: err }))
 }
 
 // Find one by scriptName & isHead:true
 module.exports.findOneHeadSpiel = (req, res) => {
-    Spiel.findOne({ scriptName: req.body.scriptName , isHead: true})
+    Spiel.findOne({ scriptName: req.params.scriptName, isHead: true })
         .then(singleSpiel => res.json(singleSpiel))
         .catch(err => res.json({ message: "Something went wrong when finding one Spiel!!", error: err }))
 }
