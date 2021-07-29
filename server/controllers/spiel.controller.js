@@ -91,3 +91,9 @@ module.exports.findOneHeadSpiel = (req, res) => {
         .then(singleSpiel => res.json(singleSpiel))
         .catch(err => res.json({ message: "Something went wrong when finding one Spiel!!", error: err }))
 }
+//Delete Script
+module.exports.deleteScript = (req, res) => {
+    Spiel.deleteMany({ scriptName: req.params.scriptName })
+        .then(deletedSpiel => res.json(deletedSpiel))
+        .catch(err => res.json({ message: "Something went wrong when deleting the Spiel!!", error: err }))
+}

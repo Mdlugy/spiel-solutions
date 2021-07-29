@@ -9,7 +9,6 @@ const LinkedFrom=props=>{
     const togglepages = e=>{
         e.preventDefault();
         setPageHidden(!pageHidden)
-        console.log(props.spiel.pageArr)
     }
     const togglemodals = e=>{
         e.preventDefault();
@@ -19,7 +18,7 @@ const LinkedFrom=props=>{
     return(
     <div className="linked-from">
         <div className="LinkForm">
-        {props.spiel.pageArr.map((link, i)=>{return< LinkCard  element={"Page"} parent={props.spiel} link = {link}/>})}     
+        {props.spiel.pageArr.map((link, i)=>{return< LinkCard add={add} setAdd={setAdd} element={"Page"} parent={props.spiel} link = {link}/>})}     
 
         <button onClick={togglepages}>link/create page</button>
                 <LinkForm add={add} setAdd={setAdd} className="LinkForm" isHidden={pageHidden} element={"Page"} spiel={props.spiel}/>

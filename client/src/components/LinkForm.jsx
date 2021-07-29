@@ -24,15 +24,23 @@ const LinkForm = (props) => {
       .then((res) => {
         if (props.element === "Page") {
           const pagesArr = res.data;
-          setOptions(pagesArr.filter((element) => element.element === "Page"));
-        } else if (props.element === "Modal") {
+          setOptions(pagesArr.filter((element) => element.element === "Page").filter((element) => props.spiel._id !== element._id))
+        let tempArr = []
+        for(let i = 0; i < props.spiel.pageArr.length; i++){
+          console.log(pagesArr.values)
+          if (!pagesArr.includes(props.spiel.pageArr[i].child_id)){
+            tempArr.push(props.spiel.pagesArr[i])
+          }
+        }
+        setOptions(tempArr)
+        }
+        else if (props.element === "Modal") {
           const modalsArr = res.data;
           setOptions(
-            modalsArr.filter((element) => element.element === "Modal")
+            modalsArr.filter((element) => element.element === "Modal").filter((element) => props.spiel._id !== element._id)
           );
         }
       })
-
       .catch((err) => console.log(err));
     setLoaded(true);
   }, [props.spiel.scriptName, add, newspiel]);
@@ -59,19 +67,16 @@ const LinkForm = (props) => {
             )
             .then((res) => console.log(res))
             .then((res) => setAdd(!add))
-            // .then(setOptions(...options, options.filter(filteredLinked => filteredLinked.name ===  )))
             .catch((err) => console.log(err));
         }
-        // window.location.reload()
+
       )
       .catch((err) => console.log(err));
 
-    //     axios.put(`http://localhost:8000/api/spiels/update/${props.spiel._id}/${props.spiel.element}/${chosen._id}/${chosen.name}`)
-    // .then(res=>window.location.reload())
-    // .catch(err => console.log(err))
   };
 
   const handleAdd = (e) => {
+    if(chosen.name.length<1||chosen.id.length<1){return}
     e.preventDefault();
     axios
       .put(`http://localhost:8000/api/spiels/update/array/${props.spiel._id}`, {

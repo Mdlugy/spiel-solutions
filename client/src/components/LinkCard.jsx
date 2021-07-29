@@ -4,11 +4,12 @@ const LinkCard=props=>{
     
     const handleDelete = e=>
     {   
+    const { add, setAdd } = props;
     axios.put(`http://localhost:8000/api/spiels/delete/array/${props.parent._id}`,{
             child_id:props.link.child_id,
             element:props.element
         })
-        .then(res=>window.location.reload())
+        .then(res=>setAdd(!add))
 
         .catch(err => console.log(err))
     }

@@ -20,6 +20,7 @@ const ScriptInputModal = props => {
     });
   };
 
+
   const handleSubmit = (e) => {
     console.log(scriptForm);
     e.preventDefault();

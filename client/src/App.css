@@ -8,6 +8,7 @@
   justify-content: space-around;
   font-size: calc(10px + 2vmin);
   color: white;}
+
 .editWrapper{
   display:flex;
   align-items: center;
@@ -47,4 +48,10 @@
 .LinkForm{
   display: flex;
   flex-direction: column;
+}
+.NavCardLink{
+  text-decoration: none;
+}
+.nav{
+  gap:2px
 }

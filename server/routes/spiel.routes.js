@@ -21,4 +21,7 @@ module.exports = app => {
     app.get('/api/spiels/find/heads', SpielController.findAllHeadSpiels)
     // Find head of one scriptName
     app.get('/api/spiels/find/oneHead/:scriptName', SpielController.findOneHeadSpiel)
+    //Delete script
+    app.delete("/api/spiels/script/delete/:scriptName", SpielController.deleteScript);
+
 }
