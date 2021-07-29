@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import Card from "../components/Card";
 import axios from "axios";
 import { navigate } from "@reach/router";
-import StepperForm from "../components/StepperForm";
 import "./Home.css";
 import ScriptInputModal from "../components/ScriptInputModal";
 

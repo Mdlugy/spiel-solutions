@@ -3,47 +3,41 @@ import React, { useEffect, useState } from "react";
 const LinkForm = (props) => {
   const { add, setAdd } = props;
   const [newspiel, setNew] = useState("");
-  const [options, setOptions] = useState(null);
+  const [options, setOptions] = useState([]);
   const [chosen, setChosen] = useState({});
   const [loaded, setLoaded] = useState(false);
+  const [refresh, setRefresh]= useState(false)
   // const [error,setError]=useState({})
 
   useEffect(() => {
-    // if (props.element==="Page")
-    // axios.get(`http://localhost:8000/api/spiels/scriptName/${props.spiel.scriptName}`)
-    // .then(res => setoptions(res.data))
-    // .catch(err => console.log(err))
-    // if (props.element==="Modal")
-    // axios.get(`http://localhost:8000/api/spiels/scriptName/${props.spiel.scriptName}`)
-    // .then(res => setoptions(res.data))
-    // .catch(err => console.log(err))
     axios
       .get(
         `http://localhost:8000/api/spiels/scriptName/${props.spiel.scriptName}`
       )
       .then((res) => {
         if (props.element === "Page") {
-          const pagesArr = res.data;
-          setOptions(pagesArr.filter((element) => element.element === "Page").filter((element) => props.spiel._id !== element._id))
-        let tempArr = []
-        for(let i = 0; i < props.spiel.pageArr.length; i++){
-          console.log(pagesArr.values)
-          if (!pagesArr.includes(props.spiel.pageArr[i].child_id)){
-            tempArr.push(props.spiel.pagesArr[i])
+          let pagesArr = res.data;
+          for(let i = 0; i < pagesArr.length; i++){
+            for(let k = 0; k < props.spiel.pageArr.length; k++){
+              if (props.spiel.pageArr[k].child_id === pagesArr[i]._id){
+                pagesArr.splice(i,1)
+            }}
           }
+          setOptions(pagesArr.filter((element) => element.element === "Page").filter((element) => props.spiel._id !== element._id))
+        } else if (props.element === "Modal") {
+          let modalsArr = res.data;
+          for(let i = 0; i < modalsArr.length; i++){
+            for(let k = 0; k < props.spiel.modalArr.length; k++){
+              if (props.spiel.modalArr[k].child_id === modalsArr[i]._id){
+                modalsArr.splice(i,1)
+            }}
+          }
+          setOptions(modalsArr.filter((element) => element.element === "Modal").filter((element) => props.spiel._id !== element._id))
         }
-        setOptions(tempArr)
-        }
-        else if (props.element === "Modal") {
-          const modalsArr = res.data;
-          setOptions(
-            modalsArr.filter((element) => element.element === "Modal").filter((element) => props.spiel._id !== element._id)
-          );
-        }
-      })
+  })
       .catch((err) => console.log(err));
     setLoaded(true);
-  }, [props.spiel.scriptName, add, newspiel]);
+  }, [props.spiel.scriptName, refresh, add, newspiel, options]);
 
   const handleNew = (e) => {
     e.preventDefault();
@@ -55,24 +49,20 @@ const LinkForm = (props) => {
       })
       .then(
         (res) => {
-          console.log(res.data);
           axios
             .put(
               `http://localhost:8000/api/spiels/update/array/${props.spiel._id}`,
               {
                 child_name: res.data.name,
-                child_id: res.data.id,
+                child_id: res.data._id,
                 element: props.element,
               }
             )
-            .then((res) => console.log(res))
-            .then((res) => setAdd(!add))
+            .then((res) => {setRefresh(!refresh); setAdd(!add)})
             .catch((err) => console.log(err));
         }
-
       )
       .catch((err) => console.log(err));
-
   };
 
   const handleAdd = (e) => {
@@ -84,7 +74,7 @@ const LinkForm = (props) => {
         child_id: chosen.id,
         element: props.element,
       })
-      .then((res) => setAdd(!add))
+      .then((res) => {setRefresh(!refresh); setAdd(!add)})
       .catch((err) => console.log(err));
   };
   const onselectHandler = (e) => {
@@ -92,7 +82,6 @@ const LinkForm = (props) => {
       id: e.target.value,
       name: e.target.options[e.target.selectedIndex].text,
     });
-    console.log(chosen);
   };
   return (
     <div>
