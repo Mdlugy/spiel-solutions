@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-
+import Modal from "../components/Modal";
+import {Link} from "@reach/router"
 const buttonStyle = {
   borderRadius: "35px 35px",
 };
@@ -81,8 +82,13 @@ const Modals = (props) => {
                   </span>
                 </div>
                 <div className="modal-body">{spiel.snippet}</div>
-                <div className="modal-body">{spiel.snippet}</div>
-                <div className="modal-body">{spiel.snippet}</div>
+                {spiel.pageArr? spiel.pageArr.map((page, i) => {
+                  return (
+                    <div key={i} className="my-auto" style={{ width: "33%" }}>
+                      <Link to={`/view/${page.child_id}`}>{page.child_name}</Link>
+                    </div>
+                  );
+                }):""}
               </div>
             </div>
           </div>

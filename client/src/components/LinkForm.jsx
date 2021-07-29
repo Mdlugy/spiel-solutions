@@ -85,7 +85,10 @@ const LinkForm = (props) => {
   };
   return (
     <div>
+      
       {!props.isHidden ? (
+
+
         <div>
           <form onSubmit={handleNew}>
             <label for="new">create new {props.element} : </label>

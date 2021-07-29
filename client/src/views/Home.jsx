@@ -46,8 +46,8 @@ const Home = (props) => {
         {spiels
           ? spiels.map((spiel, i) => {
               return (
-                <>
-                <button onClick={e=>handleScriptDelete(spiel)}>delete</button>
+                <><div className="scriptCard">
+                <button className="scriptDeleteBtn" onClick={e=>handleScriptDelete(spiel)}>delete</button>
                   <div
                     style={{
                       border: "1px solid lightgrey",
@@ -57,13 +57,13 @@ const Home = (props) => {
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
-                      width: "20%",
+                      width: "100%",
                     }}
                     className="script-card"
                     onClick={() => handleCardLink(spiel._id)}
                   >
                     <Card add={add} setAdd={setAdd} key={i} spiel={spiel} />
-                  </div>
+                  </div></div>
                 </>
               );
             })

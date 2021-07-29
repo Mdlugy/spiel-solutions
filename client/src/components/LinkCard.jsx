@@ -1,11 +1,11 @@
 import axios from 'axios'
 import React from 'react'
 const LinkCard=props=>{
-    
-    const handleDelete = e=>
-    {   
     const { add, setAdd } = props;
-    axios.put(`http://localhost:8000/api/spiels/delete/array/${props.parent._id}`,{
+    const handleDelete = e=>
+    
+    {
+        axios.put(`http://localhost:8000/api/spiels/delete/array/${props.parent._id}`,{
             child_id:props.link.child_id,
             element:props.element
         })

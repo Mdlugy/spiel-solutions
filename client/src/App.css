@@ -55,3 +55,17 @@
 .nav{
   gap:2px
 }
+.scriptCard{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column-reverse;
+  align-items: center;
+  min-width: 200px;
+}
+.scriptDeleteBtn{
+  border: 0px solid;
+  background-color:rgb(175, 9, 9);
+  color: white;
+  max-width: 25%;
+  margin-bottom: 3px;
+}

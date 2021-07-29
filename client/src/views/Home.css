@@ -4,6 +4,7 @@
   padding: 2em;
   margin: 0em 1em 2em 1em;
   cursor: pointer;
+  width: 100%;
   /* max-width: 265px; */
   /* height: 420px; */
 }
