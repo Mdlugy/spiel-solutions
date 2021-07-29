@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import TextField from "@material-ui/core/TextField";
 import axios from "axios";
-import { navigate } from "@reach/router";
 
-const ScriptInputModal = props => {
-  const {add, setAdd} = props;
+const ScriptInputModal = (props) => {
+  const { add, setAdd } = props;
   const initialFormState = {
     scriptName: "",
     element: "Page",
@@ -21,7 +20,6 @@ const ScriptInputModal = props => {
   };
 
   const handleSubmit = (e) => {
-    console.log(scriptForm);
     e.preventDefault();
     axios
       .post("http://localhost:8000/api/spiels/create", scriptForm)
@@ -30,8 +28,8 @@ const ScriptInputModal = props => {
           console.log("There was an error creating a spiel");
         } else {
           console.log("A spiel was created");
-          setAdd(!add)
-          navigate("/");
+          setAdd(!add);
+          document.getElementById("modalX").click();
         }
       })
       .catch((err) => console.log("There was an error creating a spiel", err));
@@ -60,17 +58,14 @@ const ScriptInputModal = props => {
           aria-labelledby="exampleModalCenterTitle"
           aria-hidden="true"
         >
-          <div
-            className="modal-dialog modal-dialog-centered"
-            role="document"
-            // style={{ maxWidth: "80%" }}
-          >
+          <div className="modal-dialog modal-dialog-centered" role="document">
             <div className="modal-content" style={{ borderRadius: "25px" }}>
               <div className="modal-header">
                 <h5 className="modal-title" id="exampleModalLongTitle">
                   Create A New Script
                 </h5>
                 <span
+                  id="modalX"
                   type="button"
                   className="close"
                   data-dismiss="modal"
