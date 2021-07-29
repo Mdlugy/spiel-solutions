@@ -10,6 +10,13 @@ const Home = (props) => {
   const [spiels, setSpiels] = useState(null);
   const [add, setAdd] = useState(false);
 
+  const handleScriptDelete=(spiel)=>{
+    
+    console.log(spiel)
+    axios.delete(`http://localhost:8000/api/spiels/script/delete/${spiel.scriptName}`)
+    .then(res=>setAdd(!add) )
+    .catch(err=>console.log(err))   
+  }
   useEffect(() => {
     axios
       .get("http://localhost:8000/api/spiels/find/heads")
@@ -41,6 +48,7 @@ const Home = (props) => {
           ? spiels.map((spiel, i) => {
               return (
                 <>
+                <button onClick={e=>handleScriptDelete(spiel)}>delete</button>
                   <div
                     style={{
                       border: "1px solid lightgrey",
@@ -55,7 +63,7 @@ const Home = (props) => {
                     className="script-card"
                     onClick={() => handleCardLink(spiel._id)}
                   >
-                    <Card key={i} spiel={spiel} />
+                    <Card add={add} setAdd={setAdd} key={i} spiel={spiel} />
                   </div>
                 </>
               );
