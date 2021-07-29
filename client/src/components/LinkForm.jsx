@@ -6,17 +6,10 @@ const LinkForm = (props) => {
   const [options, setOptions] = useState([]);
   const [chosen, setChosen] = useState({});
   const [loaded, setLoaded] = useState(false);
+  const [refresh, setRefresh]= useState(false)
   // const [error,setError]=useState({})
 
   useEffect(() => {
-    // if (props.element==="Page")
-    // axios.get(`http://localhost:8000/api/spiels/scriptName/${props.spiel.scriptName}`)
-    // .then(res => setoptions(res.data))
-    // .catch(err => console.log(err))
-    // if (props.element==="Modal")
-    // axios.get(`http://localhost:8000/api/spiels/scriptName/${props.spiel.scriptName}`)
-    // .then(res => setoptions(res.data))
-    // .catch(err => console.log(err))
     axios
       .get(
         `http://localhost:8000/api/spiels/scriptName/${props.spiel.scriptName}`
@@ -42,11 +35,9 @@ const LinkForm = (props) => {
           setOptions(modalsArr.filter((element) => element.element === "Modal").filter((element) => props.spiel._id !== element._id))
         }
   })
-      .then (console.log(options))
-
       .catch((err) => console.log(err));
     setLoaded(true);
-  }, [props.spiel.scriptName, add, newspiel]);
+  }, [props.spiel.scriptName, refresh, add, newspiel, options]);
 
   const handleNew = (e) => {
     e.preventDefault();
@@ -58,7 +49,6 @@ const LinkForm = (props) => {
       })
       .then(
         (res) => {
-          console.log(res.data);
           axios
             .put(
               `http://localhost:8000/api/spiels/update/array/${props.spiel._id}`,
@@ -68,18 +58,11 @@ const LinkForm = (props) => {
                 element: props.element,
               }
             )
-            .then((res) => console.log(res))
-            .then((res) => setAdd(!add))
-            // .then(setOptions(...options, options.filter(filteredLinked => filteredLinked.name ===  )))
+            .then((res) => {setRefresh(!refresh); setAdd(!add)})
             .catch((err) => console.log(err));
         }
-        // window.location.reload()
       )
       .catch((err) => console.log(err));
-
-    //     axios.put(`http://localhost:8000/api/spiels/update/${props.spiel._id}/${props.spiel.element}/${chosen._id}/${chosen.name}`)
-    // .then(res=>window.location.reload())
-    // .catch(err => console.log(err))
   };
 
   const handleAdd = (e) => {
@@ -90,7 +73,7 @@ const LinkForm = (props) => {
         child_id: chosen.id,
         element: props.element,
       })
-      .then((res) => setAdd(!add))
+      .then((res) => {setRefresh(!refresh); setAdd(!add)})
       .catch((err) => console.log(err));
   };
   const onselectHandler = (e) => {
@@ -98,7 +81,6 @@ const LinkForm = (props) => {
       id: e.target.value,
       name: e.target.options[e.target.selectedIndex].text,
     });
-    console.log(chosen);
   };
   return (
     <div>
