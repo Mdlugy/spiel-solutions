@@ -10,7 +10,7 @@ import One from "./views/One";
 function App() {
   return (
     <div className="App">
-      <Navbar />
+      {/* <Navbar /> */}
       <Router>
         <Home path="/" />
         <Edit path="/edit/:id" />

@@ -19,7 +19,6 @@ const ScriptInputModal = (props) => {
     });
   };
 
-
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
@@ -33,6 +32,7 @@ const ScriptInputModal = (props) => {
           document.getElementById("modalX").click();
         }
       })
+      .then(setScriptForm(initialFormState))
       .catch((err) => console.log("There was an error creating a spiel", err));
   };
 
@@ -89,6 +89,7 @@ const ScriptInputModal = (props) => {
                     label="Script Name"
                     variant="filled"
                     name="scriptName"
+                    value={scriptForm.scriptName}
                     onChange={onChangeHandler}
                   />
                   <TextField

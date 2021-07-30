@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Link } from "@reach/router";
+import { Link, navigate } from "@reach/router";
 import Modal from "../components/Modal";
 
 const titleStyle = {
@@ -23,7 +23,8 @@ const snippetStyle = {
 const pagesStyle = {
   height: "20%",
   display: "flex",
-  justifyContent: "space-around",
+  justifyContent: "space-between",
+  padding: "0em 5em",
 };
 
 const One = (props) => {
@@ -36,15 +37,35 @@ const One = (props) => {
       .catch((err) => console.log(err));
   }, [props.id]);
 
+  const navigateHome = () => {
+    navigate("/");
+  };
+
   return (
     <>
       {spiel ? (
         <>
           {" "}
-          <div className="container mt-4" style={{ textAlign: "left" }}>
-            <Link to={`/edit/${spiel._id}`}>
-              <i className="bi bi-pencil" style={{ fontSize: "1.5em" }}></i>
-            </Link>
+          <div className="container">
+            <div
+              className="col-9 mt-4"
+              style={{
+                justifyContent: "space-between",
+                display: "flex",
+                alignItems: "center",
+                padding: "0em 5em",
+              }}
+            >
+              <i
+                class="bi bi-house-fill"
+                style={{ fontSize: "30px", cursor: "pointer" }}
+                onClick={navigateHome}
+              ></i>
+              <Link to={`/edit/${spiel._id}`}>
+                <i className="bi bi-pencil" style={{ fontSize: "1.5em" }}></i>
+              </Link>
+            </div>
+            <div className="col-3"></div>
           </div>
           <div
             className="container mt-5"
@@ -58,9 +79,18 @@ const One = (props) => {
                 <h4>{spiel.name}</h4>
               </div>
               <div style={snippetStyle}>
-                <h4>{spiel.snippet}</h4>
+                <p>{spiel.snippet}</p>
               </div>
-              <div style={pagesStyle}>
+
+              <div
+                className="col-12 mt-4"
+                style={{
+                  justifyContent: "space-between",
+                  display: "flex",
+                  alignItems: "center",
+                  padding: "0em",
+                }}
+              >
                 <span className="my-auto">
                   <i
                     onClick={() => window.history.back()}
@@ -72,13 +102,28 @@ const One = (props) => {
                     }}
                   ></i>
                 </span>
+
                 {spiel.pageArr.map((page, i) => {
                   return (
                     <div key={i} className="my-auto" style={{ width: "33%" }}>
-                      <Link to={`/view/${page.child_id}`}>{page.child_name}</Link>
+                      <Link to={`/view/${page.child_id}`}>
+                        {page.child_name}
+                      </Link>
                     </div>
                   );
                 })}
+                <span className="my-auto">
+                  <i
+                    onClick={() => window.history.forward()}
+                    className="bi bi-arrow-right"
+                    style={{
+                      fontSize: "2em",
+                      color: "#0E6EFC",
+                      cursor: "pointer",
+                    }}
+                  ></i>
+                </span>
+                {/* <ScriptInputModal add={add} setAdd={setAdd} /> */}
               </div>
             </div>
             <div
