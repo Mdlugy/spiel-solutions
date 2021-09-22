@@ -63,6 +63,7 @@ const Home = (props) => {
           gap: ".2em",
           height: "80vh",
           marginTop: "1em",
+          backgroundColor: "darkgray"
         }}
       >
         {spiels

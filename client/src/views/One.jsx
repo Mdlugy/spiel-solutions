@@ -10,6 +10,7 @@ const titleStyle = {
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
+  marginTop: "2em"
 };
 
 const snippetStyle = {
@@ -25,6 +26,7 @@ const pagesStyle = {
   display: "flex",
   justifyContent: "space-between",
   padding: "0em 5em",
+  backgroundColor: "darkgray"
 };
 
 const One = (props) => {
@@ -69,7 +71,7 @@ const One = (props) => {
           </div>
           <div
             className="container mt-5"
-            style={{ display: "flex", height: "80vh", gap: "2em" }}
+            style={{ display: "flex", height: "80vh", gap: "2em", backgroundColor: "darkgray"}}
           >
             <div
               className="col-9 text-center"
