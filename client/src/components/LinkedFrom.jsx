@@ -69,7 +69,13 @@ const LinkedFrom = (props) => {
             </div>
             {props.spiel.modalArr.map((link, i) => {
               return (
-                <LinkCard element={"Modal"} parent={props.spiel} link={link} />
+                <LinkCard
+                  add={add}
+                  setAdd={setAdd}
+                  element={"Modal"}
+                  parent={props.spiel}
+                  link={link}
+                />
               );
             })}
             {/* <button className="m-3">link/create modal</button> */}
