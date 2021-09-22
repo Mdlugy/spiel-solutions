@@ -1,29 +1,30 @@
 .App {
   text-align: center;
-
 }
-.navcontainer{
+
+.navcontainer {
   display: flex;
   align-items: center;
   justify-content: space-around;
   font-size: calc(10px + 2vmin);
-  color: white;}
+  color: white;
+}
 
-.editWrapper{
-  display:flex;
+.editWrapper {
+  display: flex;
   align-items: center;
   justify-content: space-evenly;
 }
-.formWrapper{
+.formWrapper {
   display: flex;
   flex-direction: column;
   max-width: 50%;
 }
-.editNavbar{
+.editNavbar {
   display: flex;
   flex-direction: column;
 }
-.saveAndQuit{
+.saveAndQuit {
   background-color: aqua;
   color: palevioletred;
   border: solid 1px rgb(218, 208, 201);
@@ -38,33 +39,35 @@
   top: 0px;
   left: 0px;
 }
-.linked-from{
-  border: 1px solid black;
-  display: flex;
+.linked-from {
+  /* border: 1px solid black; */
+  /* display: flex; */
   justify-content: center;
   gap: 10px;
-  padding: 10px;
+  padding-left: 30px;
+  padding-right: 30px;
+  width: 100%;
 }
-.LinkForm{
+.LinkForm {
   display: flex;
   flex-direction: column;
 }
-.NavCardLink{
+.NavCardLink {
   text-decoration: none;
 }
-.nav{
-  gap:2px
+.nav {
+  gap: 2px;
 }
-.scriptCard{
+.scriptCard {
   display: flex;
   flex-wrap: wrap;
   flex-direction: column-reverse;
   align-items: center;
   min-width: 200px;
 }
-.scriptDeleteBtn{
+.scriptDeleteBtn {
   border: 0px solid;
-  background-color:rgb(175, 9, 9);
+  background-color: rgb(175, 9, 9);
   color: white;
   max-width: 25%;
   margin-bottom: 3px;

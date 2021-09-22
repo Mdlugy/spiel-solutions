@@ -17,8 +17,10 @@ const snippetStyle = {
   height: "50%",
   borderRadius: "35px 35px 35px 35px",
   display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
+  // justifyContent: "center",
+  // alignItems: "center",
+  fontSize: "21px",
+  padding: "2.25em",
 };
 const pagesStyle = {
   height: "20%",

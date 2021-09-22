@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Modal from "../components/Modal";
-import {Link} from "@reach/router"
+import { Link } from "@reach/router";
 const buttonStyle = {
   borderRadius: "35px 35px",
 };
@@ -54,11 +54,11 @@ const Modals = (props) => {
             <div
               className="modal-dialog modal-dialog-centered container"
               role="document"
-              style={{ maxWidth: "25%", marginRight: "0px" }}
+              style={{ maxWidth: "100%" }}
             >
               <div
-                className="modal-content"
-                style={{ borderRadius: "25px", alignSelf: "flex-end" }}
+                className="modal-content w-50 mx-auto"
+                style={{ borderRadius: "25px" }}
               >
                 <div className="modal-header">
                   <h5 className="modal-title" id="exampleModalLongTitle">
@@ -82,13 +82,21 @@ const Modals = (props) => {
                   </span>
                 </div>
                 <div className="modal-body">{spiel.snippet}</div>
-                {spiel.pageArr? spiel.pageArr.map((page, i) => {
-                  return (
-                    <div key={i} className="my-auto" style={{ width: "33%" }}>
-                      <Link to={`/view/${page.child_id}`}>{page.child_name}</Link>
-                    </div>
-                  );
-                }):""}
+                {spiel.pageArr
+                  ? spiel.pageArr.map((page, i) => {
+                      return (
+                        <div
+                          key={i}
+                          className="my-auto"
+                          style={{ width: "33%" }}
+                        >
+                          <Link to={`/view/${page.child_id}`}>
+                            {page.child_name}
+                          </Link>
+                        </div>
+                      );
+                    })
+                  : ""}
               </div>
             </div>
           </div>

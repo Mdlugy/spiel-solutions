@@ -115,58 +115,28 @@ const Edit = (props) => {
                 <div style={snippetStyle}>
                   <form
                     onSubmit={snippetSave}
-                    className="d-flex flex-column col-12 p-5"
+                    className="d-flex flex-column col-12 px-5"
+                    style={{ height: "100%" }}
                   >
                     <textarea
                       onChange={onChangeHandler}
                       value={spiel.snippet ? spiel.snippet : ""}
                       name="snippet"
-                      style={{ height: "200px" }}
+                      style={{
+                        height: "70%",
+                        marginTop: "1.5em",
+                        fontSize: "21px",
+                        padding: ".5em",
+                      }}
                     />
-                    <div></div>
+                    <button
+                      type="submit"
+                      className="btn btn-primary my-3"
+                      onClick={snippetSave}
+                    >
+                      Save
+                    </button>
                   </form>
-                </div>
-                <div
-                  className="col-12 mt-4"
-                  style={{
-                    justifyContent: "space-between",
-                    display: "flex",
-                    alignItems: "center",
-                    padding: "0em",
-                  }}
-                >
-                  <span className="my-auto">
-                    <i
-                      onClick={() => window.history.back()}
-                      className="bi bi-arrow-left"
-                      style={{
-                        fontSize: "2em",
-                        color: "#0E6EFC",
-                        cursor: "pointer",
-                      }}
-                    ></i>
-                  </span>
-
-                  {/* {spiel.pageArr.map((page, i) => {
-                    return (
-                      <div key={i} className="my-auto" style={{ width: "33%" }}>
-                        <Link to={`/view/${page.child_id}`}>
-                          {page.child_name}
-                        </Link>
-                      </div>
-                    );
-                  })} */}
-                  <span className="my-auto">
-                    <i
-                      onClick={() => window.history.forward()}
-                      className="bi bi-arrow-right"
-                      style={{
-                        fontSize: "2em",
-                        color: "#0E6EFC",
-                        cursor: "pointer",
-                      }}
-                    ></i>
-                  </span>
                 </div>
               </div>
               <div
@@ -177,16 +147,8 @@ const Edit = (props) => {
                   gap: "1em",
                 }}
               >
-                <EditNavbar spiel={spiel} />
+                {/* <EditNavbar spiel={spiel} /> */}
                 <LinkedFrom add={add} setAdd={setAdd} spiel={spiel} />
-
-                <button
-                  type="submit"
-                  className="btn btn-primary mt-4"
-                  onClick={snippetSave}
-                >
-                  Save
-                </button>
               </div>
             </div>
           </div>
