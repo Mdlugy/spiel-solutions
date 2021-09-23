@@ -1,7 +1,7 @@
 const User = require("../models/user.model");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const secret = require("../config/jwt");
+const secret = require("../config/jwt.config");
 
 class UserController {
     register(req, res) {
@@ -38,3 +38,5 @@ class UserController {
             .catch(err => res.json(err))
     }
 }
+
+module.exports = new UserController();
