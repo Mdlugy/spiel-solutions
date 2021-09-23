@@ -6,7 +6,7 @@ const Login = () => {
     return (
         <div id="login" >
             <h2>Login Here</h2>
-            <form method = 'POST' action='/login'>
+            <form method = 'POST' action='/api/login'>
                 <div class="form-group">
                     <label>Email Address:</label>
                     <input type="text" class="form-control" placeholder="email here!" name='email'/>

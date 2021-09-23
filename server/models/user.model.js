@@ -30,8 +30,8 @@ const UserSchema = new mongoose.Schema({
 
 // Confirm Password. Use of virtual keyword https://mongoosejs.com/docs/tutorials/virtuals.html
 UserSchema.virtual('confirmPassword')
-    .get( () => this._confirmPassword )
-    .set( value => this._confirmPassword = value );
+    .get( () => this.confirmPassword )
+    .set( value => this.confirmPassword = value );
 
 // Use of pre hook to compare password versus confirmpassword https://mongoosejs.com/docs/middleware.html#pre
 UserSchema.pre('validate', function(next) {
