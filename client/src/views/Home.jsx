@@ -8,6 +8,16 @@ import ScriptInputModal from "../components/ScriptInputModal";
 const Home = (props) => {
   const [spiels, setSpiels] = useState(null);
   const [add, setAdd] = useState(false);
+  const [loggedinuser, setLoggedInUser] = useState({});
+
+  useEffect(() => {
+    axios.get("http://localhost:8000/api/users/getloggedinuser", {withCredentials:true})
+      .then(res => {
+        console.log("logged in user info", res)
+        setLoggedInUser(res.data)
+      })
+      .catch(err => console.log(err))
+  }, [])
 
   const handleScriptDelete = (spiel) => {
     console.log(spiel);
@@ -36,6 +46,7 @@ const Home = (props) => {
   return (
     <>
       <div className="container">
+        <h3>Welcome, {loggedinuser.firstName} you made it</h3>
         <div
           className="col-9 mt-4"
           style={{

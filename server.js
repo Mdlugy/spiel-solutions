@@ -1,5 +1,5 @@
 const express = require('express');
-const cookieParser = require('cookie-parser');
+const cookies = require('cookie-parser');
 const cors = require("cors")
 const app = express();
 const port = 8000;
@@ -7,7 +7,7 @@ const port = 8000;
 app.use(cors({credentials: true, origin: 'http://localhost:3000'}));
 
 require("./server/config/mongoose.config");
-require('dotenv').config();
+
 
 
 // Code that allows us to get req.body information
@@ -19,10 +19,7 @@ AllMyRoutes(app);
 const UserRoutes = require("./server/routes/user.routes");
 UserRoutes(app);
 
-
-app.use(cookieParser());
-
-
+app.use(cookies());
 
 // Cookie
 // res.cookie("mycookie", "mydata", { httpOnly: true }).json({

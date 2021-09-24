@@ -7,7 +7,7 @@ const LoginReg = () => {
 
 
     return (
-        <div className="landing">
+        <div className="landingPage">
             <h1><span id="login">Login</span> and <span id= 'registration'>Registration</span></h1>
             <div id = "container">
                 <Reg />
