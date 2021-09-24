@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { navigate } from "@reach/router";
 import Delete from "../components/Delete";
 import LinkedFrom from "../components/LinkedFrom";
+import "./Edit.css";
 
 const titleStyle = {
   border: "1px solid lightgrey",
@@ -91,10 +92,13 @@ const Edit = (props) => {
               )}
             </div>
           </div>
-          <div className="container">
-            <div className="row mt-5">
+          <div
+            className="pageContainer"
+            style={{ height: "100vh", overflowY: "scroll" }}
+          >
+            <div className="mt-5">
               <div
-                className="col-9 text-center"
+                className="script-body text-center"
                 style={{ display: "flex", flexDirection: "column", gap: "1em" }}
               >
                 <div style={titleStyle}>
@@ -127,9 +131,9 @@ const Edit = (props) => {
                   </form>
                 </div>
               </div>
-              <div className="col-3 text-center mt-1">
-                <LinkedFrom add={add} setAdd={setAdd} spiel={spiel} />
-              </div>
+            </div>
+            <div className="pages-modals mt-1 pb-5 mb-5">
+              <LinkedFrom add={add} setAdd={setAdd} spiel={spiel} />
             </div>
           </div>
         </>
