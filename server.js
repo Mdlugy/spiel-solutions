@@ -21,9 +21,6 @@ UserRoutes(app);
 
 app.use(cookies());
 
-// Cookie
-// res.cookie("mycookie", "mydata", { httpOnly: true }).json({
-//     message: "This response has a cookie"
-// });
+
 
 app.listen(port, () => console.log(`Running on port ${port}!!`));

@@ -8,7 +8,7 @@ class UserController {
     register(req, res) {
         const user = new User(req.body);
         user.save()
-            .then(() => {
+            .then((user) => {
                 res
                     .cookie("usertoken", jwt.sign({_id:user._id}, secret, {httpOnly: true}))
                     .json({msg: "Success!", user: user})
@@ -43,6 +43,7 @@ class UserController {
         const decodedJWT = jwt.decode(req.cookies.usertoken, {complete:true});
         User.findById(decodedJWT.payload._id)
             .then(user => res.json(user))
+            .then(console.log(user))
             .catch(err => res.json(err))
     }
 }
