@@ -6,7 +6,7 @@ import LinkedFrom from "../components/LinkedFrom";
 
 const titleStyle = {
   border: "1px solid lightgrey",
-  height: "20%",
+  minHeight: "100px",
   borderRadius: "35px 35px 35px 35px",
   display: "flex",
   justifyContent: "center",
