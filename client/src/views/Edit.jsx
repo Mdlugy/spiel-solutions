@@ -74,7 +74,7 @@ const Edit = (props) => {
                 justifyContent: "space-between",
                 display: "flex",
                 alignItems: "center",
-                padding: "0em 5em",
+                padding: "0em 2em",
               }}
             >
               <i
@@ -82,7 +82,9 @@ const Edit = (props) => {
                 style={{ fontSize: "30px", cursor: "pointer" }}
                 onClick={navigateHome}
               ></i>
-
+              {/* <h4 style={{ color: "indianred", textDecoration: "underline" }}>
+                Speil Solutions
+              </h4> */}
               {!spiel.isHead ? (
                 <div>
                   <Delete id={props.id} redirect={scriptHead} />

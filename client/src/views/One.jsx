@@ -64,6 +64,9 @@ const One = (props) => {
                 style={{ fontSize: "30px", cursor: "pointer" }}
                 onClick={navigateHome}
               ></i>
+              {/* <h4 style={{ color: "indianred", textDecoration: "underline" }}>
+                Speil Solutions
+              </h4> */}
               <Link to={`/edit/${spiel._id}`}>
                 <i className="bi bi-pencil" style={{ fontSize: "1.5em" }}></i>
               </Link>

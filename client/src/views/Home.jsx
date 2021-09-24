@@ -42,7 +42,7 @@ const Home = (props) => {
             justifyContent: "space-between",
             display: "flex",
             alignItems: "center",
-            padding: "0em 5em",
+            padding: "0em 2em",
           }}
         >
           <i
@@ -50,6 +50,9 @@ const Home = (props) => {
             style={{ fontSize: "30px", cursor: "pointer", color: "ghostwhite" }}
             onClick={navigateHome}
           ></i>
+          {/* <h4 style={{ color: "indianred", textDecoration: "underline" }}>
+            Speil Solutions
+          </h4> */}
           <ScriptInputModal add={add} setAdd={setAdd} />
         </div>
         {/* <div className="col-3"></div> */}
