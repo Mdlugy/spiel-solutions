@@ -7,9 +7,9 @@ const secret = "secrets are included"
 module.exports.secret = secret;
 
 
-// const payload = {
-//     id: user._id
-// };
+const payload = {
+    id: user._id
+};
 // // // using the SECRET_KEY from our .env file
 // const userToken = jwt.sign(payload, secret);
 

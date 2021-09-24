@@ -4,6 +4,7 @@ const cors = require("cors")
 const app = express();
 const port = 8000;
 
+app.use(cookies());
 app.use(cors({credentials: true, origin: 'http://localhost:3000'}));
 
 require("./server/config/mongoose.config");
@@ -19,7 +20,7 @@ AllMyRoutes(app);
 const UserRoutes = require("./server/routes/user.routes");
 UserRoutes(app);
 
-app.use(cookies());
+
 
 
 
