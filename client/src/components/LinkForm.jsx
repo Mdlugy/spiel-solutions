@@ -49,32 +49,32 @@ const LinkForm = (props) => {
     setLoaded(true);
   }, [props.spiel.scriptName, refresh, add, newspiel, options]);
 
-  const handleNew = (e) => {
-    e.preventDefault();
-    axios
-      .post("http://localhost:8000/api/spiels/create", {
-        element: props.element,
-        name: newspiel,
-        scriptName: props.spiel.scriptName,
-      })
-      .then((res) => {
-        axios
-          .put(
-            `http://localhost:8000/api/spiels/update/array/${props.spiel._id}`,
-            {
-              child_name: res.data.name,
-              child_id: res.data._id,
-              element: props.element,
-            }
-          )
-          .then((res) => {
-            setRefresh(!refresh);
-            setAdd(!add);
-          })
-          .catch((err) => console.log(err));
-      })
-      .catch((err) => console.log(err));
-  };
+  // const handleNew = (e) => {
+  //   e.preventDefault();
+  //   axios
+  //     .post("http://localhost:8000/api/spiels/create", {
+  //       element: props.element,
+  //       name: newspiel,
+  //       scriptName: props.spiel.scriptName,
+  //     })
+  //     .then((res) => {
+  //       axios
+  //         .put(
+  //           `http://localhost:8000/api/spiels/update/array/${props.spiel._id}`,
+  //           {
+  //             child_name: res.data.name,
+  //             child_id: res.data._id,
+  //             element: props.element,
+  //           }
+  //         )
+  //         .then((res) => {
+  //           setRefresh(!refresh);
+  //           setAdd(!add);
+  //         })
+  //         .catch((err) => console.log(err));
+  //     })
+  //     .catch((err) => console.log(err));
+  // };
 
   const handleAdd = (e) => {
     if (chosen.name.length < 1 || chosen.id.length < 1) {

@@ -137,7 +137,7 @@ const One = (props) => {
               }}
             >
               {spiel.modalArr.map((modal, i) => (
-                <Modal key={i} modals={modal} />
+                <Modal key={modal.child_id} modals={modal} />
               ))}
             </div>
           </div>

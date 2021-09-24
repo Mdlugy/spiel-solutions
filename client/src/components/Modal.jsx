@@ -6,16 +6,15 @@ const buttonStyle = {
   borderRadius: "35px 35px",
 };
 
-const Modals = (props) => {
+const Modals = ({ modals }) => {
   const [spiel, setSpiel] = useState(null);
   const [id, setID] = useState(null);
-  const { modals } = props;
 
-  useEffect(() => {
-    getSpielByModalID();
-  }, [id]);
+  // useEffect(() => {
+  //   getSpielByModalID(id);
+  // }, [id]);
 
-  const getSpielByModalID = () => {
+  const getSpielByModalID = (id) => {
     axios
       .get(`http://localhost:8000/api/spiels/${id}`)
       .then((res) => setSpiel(res.data))
@@ -23,8 +22,9 @@ const Modals = (props) => {
   };
 
   const handleClick = (modalID) => {
+    getSpielByModalID(modalID);
     setID(modalID);
-    console.log(spiel);
+    console.log(modalID);
   };
 
   return (
@@ -35,11 +35,11 @@ const Modals = (props) => {
         data-toggle="modal"
         data-target="#exampleModalCenter"
         style={buttonStyle}
-        onClick={(e) => handleClick(modals.child_id)}
+        onClick={() => handleClick(modals.child_id)}
       >
         {modals.child_name}
       </button>
-      {spiel && id ? (
+      {spiel ? (
         <div>
           <div
             className="modal fade"
@@ -48,7 +48,7 @@ const Modals = (props) => {
             role="dialog"
             aria-labelledby="exampleModalCenterTitle"
             aria-hidden="true"
-            data-backdrop="false"
+            // data-backdrop="false"
             style={{ display: "flex" }}
           >
             <div
