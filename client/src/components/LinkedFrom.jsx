@@ -1,22 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import LinkCard from "./LinkCard";
 import LinkForm from "./LinkForm";
 import InputPage from "./InputPage";
 import InputModal from "./InputModal";
+
 const LinkedFrom = (props) => {
   const { add, setAdd } = props;
-  // const [modalHidden, setModalHidden] = useState(true);
-  // const [pageHidden, setPageHidden] = useState(true);
-
-  // const togglepages = (e) => {
-  //   e.preventDefault();
-  //   setPageHidden(!pageHidden);
-  // };
-  // const togglemodals = (e) => {
-  //   e.preventDefault();
-  //   setModalHidden(!modalHidden);
-  //   console.log(props.spiel.modalArr);
-  // };
 
   return (
     <div className="linked-from">
@@ -42,12 +31,10 @@ const LinkedFrom = (props) => {
           );
         })}
 
-        {/* <button className="m-3">link/create page</button> */}
         <LinkForm
           add={add}
           setAdd={setAdd}
           className="LinkForm"
-          // isHidden={pageHidden}
           element={"Page"}
           spiel={props.spiel}
         />
@@ -78,12 +65,11 @@ const LinkedFrom = (props) => {
                 />
               );
             })}
-            {/* <button className="m-3">link/create modal</button> */}
+
             <LinkForm
               add={add}
               setAdd={setAdd}
               className="LinkForm"
-              // isHidden={modalHidden}
               element={"Modal"}
               spiel={props.spiel}
             />

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Modal from "../components/Modal";
 import { Link } from "@reach/router";
+
 const buttonStyle = {
   borderRadius: "35px 35px",
 };
@@ -10,22 +10,22 @@ const Modals = ({ modals }) => {
   const [spiel, setSpiel] = useState(null);
   const [id, setID] = useState(null);
 
-  // useEffect(() => {
-  //   getSpielByModalID(id);
-  // }, [id]);
-
   const getSpielByModalID = (id) => {
     axios
       .get(`http://localhost:8000/api/spiels/${id}`)
       .then((res) => setSpiel(res.data))
+      .then(() => console.log(spiel))
       .catch((err) => console.log(err));
   };
 
   const handleClick = (modalID) => {
-    getSpielByModalID(modalID);
     setID(modalID);
     console.log(modalID);
   };
+
+  useEffect(() => {
+    getSpielByModalID(id);
+  }, [id]);
 
   return (
     <>
@@ -39,7 +39,7 @@ const Modals = ({ modals }) => {
       >
         {modals.child_name}
       </button>
-      {spiel ? (
+      {spiel && id ? (
         <div>
           <div
             className="modal fade"
@@ -48,7 +48,7 @@ const Modals = ({ modals }) => {
             role="dialog"
             aria-labelledby="exampleModalCenterTitle"
             aria-hidden="true"
-            // data-backdrop="false"
+            data-backdrop="false"
             style={{ display: "flex" }}
           >
             <div
@@ -73,7 +73,7 @@ const Modals = ({ modals }) => {
                       color: "red",
                       fontSize: "1.25em",
                     }}
-                    onClick={(e) => {
+                    onClick={() => {
                       setSpiel(null);
                       setID(null);
                     }}

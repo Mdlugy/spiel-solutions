@@ -37,7 +37,7 @@ const Home = (props) => {
     <>
       <div className="container">
         <div
-          className="col-9 mt-4"
+          className="col-12 pt-4"
           style={{
             justifyContent: "space-between",
             display: "flex",
@@ -47,12 +47,12 @@ const Home = (props) => {
         >
           <i
             class="bi bi-house-fill"
-            style={{ fontSize: "30px", cursor: "pointer", color: "lightgray" }}
+            style={{ fontSize: "30px", cursor: "pointer", color: "ghostwhite" }}
             onClick={navigateHome}
           ></i>
           <ScriptInputModal add={add} setAdd={setAdd} />
         </div>
-        <div className="col-3"></div>
+        {/* <div className="col-3"></div> */}
       </div>
       <div
         style={{
@@ -61,15 +61,16 @@ const Home = (props) => {
           justifyContent: "space-evenly",
           alignItems: "center",
           gap: ".2em",
-          height: "80vh",
-          marginTop: "1em",
+          height: "100vh",
+          paddingTop: "3em",
+          alignContent: "flex-start",
         }}
       >
         {spiels
           ? spiels.map((spiel, i) => {
               return (
                 <>
-                  <div className="scriptCard col-2">
+                  <div className="scriptCard">
                     <i
                       class="bi bi-trash "
                       style={{
@@ -83,12 +84,14 @@ const Home = (props) => {
                       style={{
                         border: "1px solid lightgrey",
                         borderRadius: "35px 35px 35px 35px",
-                        height: "30%",
+                        // height: "30%",
                         cursor: "pointer",
                         display: "flex",
                         alignItems: "center",
                         justifyContent: "center",
+                        alignContent: "center",
                         width: "100%",
+                        backgroundColor: "aliceblue",
                       }}
                       className="script-card"
                       onClick={() => handleCardLink(spiel._id)}

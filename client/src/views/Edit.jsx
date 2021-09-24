@@ -1,13 +1,8 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { navigate } from "@reach/router";
 import Delete from "../components/Delete";
-import EditNavbar from "../components/EditNavBar";
 import LinkedFrom from "../components/LinkedFrom";
-
-import { Link, navigate } from "@reach/router";
-import Modal from "../components/Modal";
-
-//usestate  setSpiel axios get by id
 
 const titleStyle = {
   border: "1px solid lightgrey",
@@ -16,20 +11,17 @@ const titleStyle = {
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
+  backgroundColor: "ghostwhite",
 };
 
 const snippetStyle = {
   border: "1px solid lightgrey",
-  height: "50%",
+  minHeight: "50%",
   borderRadius: "35px 35px 35px 35px",
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
-};
-const pagesStyle = {
-  height: "20%",
-  display: "flex",
-  justifyContent: "space-around",
+  backgroundColor: "aliceblue",
 };
 
 const Edit = (props) => {
@@ -76,7 +68,7 @@ const Edit = (props) => {
         <>
           <div className="container">
             <div
-              className="col-9 mt-4"
+              className="col-12 pt-4"
               style={{
                 justifyContent: "space-between",
                 display: "flex",
@@ -98,13 +90,9 @@ const Edit = (props) => {
                 <div></div>
               )}
             </div>
-            <div className="col-3"></div>
           </div>
-          <div className="editWrapper">
-            <div
-              className="container mt-5"
-              style={{ display: "flex", height: "80vh", gap: "2em" }}
-            >
+          <div className="container">
+            <div className="row mt-5">
               <div
                 className="col-9 text-center"
                 style={{ display: "flex", flexDirection: "column", gap: "1em" }}
@@ -139,15 +127,7 @@ const Edit = (props) => {
                   </form>
                 </div>
               </div>
-              <div
-                className="col-3 text-center mt-2"
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: "1em",
-                }}
-              >
-                {/* <EditNavbar spiel={spiel} /> */}
+              <div className="col-3 text-center mt-1">
                 <LinkedFrom add={add} setAdd={setAdd} spiel={spiel} />
               </div>
             </div>

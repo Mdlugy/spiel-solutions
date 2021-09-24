@@ -1,13 +1,12 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+
 const LinkForm = (props) => {
   const { add, setAdd } = props;
-  const [newspiel, setNew] = useState("");
   const [options, setOptions] = useState([]);
   const [chosen, setChosen] = useState({});
   const [loaded, setLoaded] = useState(false);
   const [refresh, setRefresh] = useState(false);
-  // const [error,setError]=useState({})
 
   useEffect(() => {
     axios
@@ -47,34 +46,7 @@ const LinkForm = (props) => {
       })
       .catch((err) => console.log(err));
     setLoaded(true);
-  }, [props.spiel.scriptName, refresh, add, newspiel, options]);
-
-  // const handleNew = (e) => {
-  //   e.preventDefault();
-  //   axios
-  //     .post("http://localhost:8000/api/spiels/create", {
-  //       element: props.element,
-  //       name: newspiel,
-  //       scriptName: props.spiel.scriptName,
-  //     })
-  //     .then((res) => {
-  //       axios
-  //         .put(
-  //           `http://localhost:8000/api/spiels/update/array/${props.spiel._id}`,
-  //           {
-  //             child_name: res.data.name,
-  //             child_id: res.data._id,
-  //             element: props.element,
-  //           }
-  //         )
-  //         .then((res) => {
-  //           setRefresh(!refresh);
-  //           setAdd(!add);
-  //         })
-  //         .catch((err) => console.log(err));
-  //     })
-  //     .catch((err) => console.log(err));
-  // };
+  }, [props.spiel.scriptName, refresh, add, options]);
 
   const handleAdd = (e) => {
     if (chosen.name.length < 1 || chosen.id.length < 1) {
@@ -103,18 +75,6 @@ const LinkForm = (props) => {
     <div>
       {!props.isHidden ? (
         <div>
-          {/* <form onSubmit={handleNew}>
-            <label for="new">create new {props.element} : </label>
-            <input
-              name="new"
-              onChange={(e) => setNew(e.target.value)}
-              type="text"
-            />
-            <div>
-              <input type="submit" value="create" className="btn btn-info" />
-            </div>
-          </form> */}
-
           {options && loaded ? (
             <form onSubmit={handleAdd}>
               <select onChange={onselectHandler} className="w-100">
