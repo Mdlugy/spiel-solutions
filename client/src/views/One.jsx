@@ -56,7 +56,7 @@ const One = (props) => {
                 justifyContent: "space-between",
                 display: "flex",
                 alignItems: "center",
-                padding: "0em 5em",
+                padding: "0em 2em",
               }}
             >
               <i
