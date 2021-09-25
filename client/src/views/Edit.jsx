@@ -134,7 +134,7 @@ const Edit = (props) => {
                 </div>
               </div>
             </div>
-            <div className="pages-modals mt-1 pb-5 mb-5">
+            <div className="pages-modals mt-lg-5 mt-sm-0 pb-5 mb-5">
               <LinkedFrom add={add} setAdd={setAdd} spiel={spiel} />
             </div>
           </div>

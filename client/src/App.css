@@ -10,6 +10,12 @@
   background-color: #c7cad5;
   height: 100vh;
   overflow: hidden;
+  background: rgb(245, 245, 245);
+  background: radial-gradient(
+    circle,
+    rgba(245, 245, 245, 0.3295693277310925) 0%,
+    rgba(199, 202, 213, 1) 98%
+  );
 }
 
 .navcontainer {
