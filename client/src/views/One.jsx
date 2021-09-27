@@ -10,7 +10,11 @@ const titleStyle = {
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
+<<<<<<< HEAD
   backgroundColor: "ghostwhite",
+=======
+  marginTop: "2em"
+>>>>>>> baby_got_back
 };
 
 const snippetStyle = {
@@ -28,6 +32,7 @@ const pagesStyle = {
   display: "flex",
   justifyContent: "space-between",
   padding: "0em 5em",
+  backgroundColor: "darkgray"
 };
 
 const One = (props) => {
@@ -74,7 +79,11 @@ const One = (props) => {
           </div>
           <div
             className="container mt-5"
+<<<<<<< HEAD
             style={{ display: "flex", height: "80vh", gap: "1em" }}
+=======
+            style={{ display: "flex", height: "80vh", gap: "2em", backgroundColor: "darkgray"}}
+>>>>>>> baby_got_back
           >
             <div
               className="col-8 text-center"
