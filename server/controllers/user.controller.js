@@ -10,11 +10,11 @@ class UserController {
       .save()
       .then((user) => {
         res
-          .cookie(
-            "usertoken",
-            jwt.sign({ _id: user._id }, secret, { httpOnly: true })
-          )
+          .cookie("usertoken", jwt.sign({ _id: user._id }, secret), {
+            httpOnly: true,
+          })
           .json({ msg: "Success!", user: user });
+
         console.log("msg from backend successfully registered!");
       })
       .catch((err) => res.json(err));
@@ -24,19 +24,17 @@ class UserController {
     User.findOne({ email: req.body.email })
       .then((user) => {
         if (user == null) {
-          res.json({ msg: "Email not found" }); // email is not found
+          res.json({ msg: "Invalid login attempt" }); // email is not found
         } else {
           bcrypt.compare(req.body.password, user.password, (err, result) => {
             if (err || !result) {
               console.log("invalid login");
               res.json({ msg: "Invalid login attempt" }); //incorrect pw
             } else {
-              console.log("true");
-              res
-                .cookie("usertoken", jwt.sign({ _id: user._id }, secret), {
-                  httpOnly: true,
-                })
-                .json({ msg: "success!" });
+              res.cookie("usertoken", jwt.sign({ _id: user._id }, secret), {
+                httpOnly: true,
+              });
+              res.json({ user: user.firstName });
             }
           });
         }
