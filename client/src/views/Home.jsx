@@ -11,13 +11,15 @@ const Home = (props) => {
   const [loggedinuser, setLoggedInUser] = useState({});
 
   useEffect(() => {
-    axios.get("http://localhost:8000/api/users/getloggedinuser", {withCredentials:true})
-      .then(res => {
-        console.log("logged in user info", res)
-        setLoggedInUser(res.data)
+    axios
+      .get("http://localhost:8000/api/users/getloggedinuser", {
+        withCredentials: true,
       })
-      .catch(err => console.log(err))
-  }, [])
+      .then((res) => {
+        setLoggedInUser(res.data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
 
   const handleScriptDelete = (spiel) => {
     console.log(spiel);
@@ -74,7 +76,7 @@ const Home = (props) => {
           gap: ".2em",
           height: "80vh",
           marginTop: "1em",
-          backgroundColor: "darkgray"
+          backgroundColor: "darkgray",
         }}
       >
         {spiels
