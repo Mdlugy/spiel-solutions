@@ -3,7 +3,11 @@ import Login from "../components/Login";
 import Reg from "../components/Reg";
 
 const LoginReg = () => {
+    const [refreshToggle, setRefreshToggle] = useState(false);
 
+    const stateRefresh = () => {
+        setRefreshToggle(!refreshToggle);
+    }
 
 
     return (

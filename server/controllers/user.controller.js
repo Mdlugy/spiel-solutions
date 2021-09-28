@@ -34,7 +34,7 @@ class UserController {
               res.cookie("usertoken", jwt.sign({ _id: user._id }, secret), {
                 httpOnly: true,
               });
-              res.json({ user: user.firstName });
+              res.json({ user: user.firstName, msg: "success!" });
             }
           });
         }
