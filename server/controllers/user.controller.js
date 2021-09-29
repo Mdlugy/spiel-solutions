@@ -48,6 +48,13 @@ class UserController {
       .then((user) => res.json(user))
       .catch((err) => res.json(err));
   }
+
+  logout(req, res) {
+    console.log("logout in controller");
+    // res.clearCookie('usertoken', {path:'/', domain:"localhost", expires: new Date() });
+    res.cookie('usertoken', "", {path:'/', domain:"localhost", expires: new Date() })
+    res.sendStatus(200);
+  }
 }
 
 module.exports = new UserController();

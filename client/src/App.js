@@ -20,6 +20,7 @@ function App() {
       })
       .then((res) => {
         setLoggedInUser(res.data);
+        console.log(res.data)
       })
       .catch((err) => console.log(err));
   }, []);

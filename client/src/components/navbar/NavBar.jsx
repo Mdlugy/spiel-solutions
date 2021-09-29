@@ -11,6 +11,8 @@ import ListItemText from "@material-ui/core/ListItemText";
 // import InboxIcon from "@material-ui/icons/MoveToInbox";
 // import MailIcon from "@material-ui/icons/Mail";
 import MenuIcon from "@mui/icons-material/Menu";
+import axios from 'axios';
+import {navigate} from '@reach/router'
 
 const useStyles = makeStyles({
   list: {
@@ -29,6 +31,13 @@ const Navbar = (props) => {
     // bottom: false,
     right: false,
   });
+
+  const logout = () => {
+    axios.get("http://localhost:8000/api/users/logout",{}, {withCredentials:true})
+    .then((res) => console.log(res))
+    .catch((err) => console.log(err))
+    navigate("/")
+  }
 
   const toggleDrawer = (anchor, open) => (event) => {
     if (
@@ -72,7 +81,7 @@ const Navbar = (props) => {
         </ListItem> */}
 
         {props.user ? (
-          <ListItem button>
+          <ListItem button onClick={logout}>
             <ListItemIcon>
               {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
             </ListItemIcon>
