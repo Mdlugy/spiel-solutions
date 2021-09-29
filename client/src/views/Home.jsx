@@ -42,8 +42,15 @@ const Home = (props) => {
   };
 
   const navigateHome = () => {
-    navigate("/");
+    navigate("/home");
   };
+
+  const logout = () => {
+    axios.get("http://localhost:8000/api/users/logout", loggedinuser, {withCredentials:true})
+    .then((res) => console.log(res))
+    .catch((err) => console.log(err))
+    navigate("/")
+  }
 
   return (
     <>
@@ -64,6 +71,7 @@ const Home = (props) => {
             onClick={navigateHome}
           ></i>
           <ScriptInputModal add={add} setAdd={setAdd} />
+          <button onClick ={(e) => logout()}>Logout</button>
         </div>
         <div className="col-3"></div>
       </div>

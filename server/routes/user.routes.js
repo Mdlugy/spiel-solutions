@@ -9,4 +9,5 @@ module.exports = (app) => {
     authenticate,
     UserController.getLoggedInUser
   );
+  app.post("/api/users/logout", UserController.logout);
 };

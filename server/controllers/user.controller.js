@@ -13,7 +13,7 @@ class UserController {
           .cookie("usertoken", jwt.sign({ _id: user._id }, secret), {
             httpOnly: true,
           })
-          .json({ msg: "Success!", user: user });
+          .json({ msg: "Success!", user: user.email });
 
         console.log("msg from backend successfully registered!");
       })
@@ -31,7 +31,7 @@ class UserController {
               console.log("invalid login");
               res.json({ msg: "Invalid login attempt" }); //incorrect pw
             } else {
-              res.cookie("usertoken", jwt.sign({ _id: user._id }, secret), {
+              res.cookie('usertoken', jwt.sign({ _id: user._id }, secret), {
                 httpOnly: true,
               });
               res.json({ user: user.firstName, msg: "success!" });
@@ -47,6 +47,12 @@ class UserController {
     User.findById(decodedJWT.payload._id)
       .then((user) => res.json(user))
       .catch((err) => res.json(err));
+  }
+
+  logout(req, res) {
+    console.log("logout in controller")
+    res.clearCookie('usertoken');
+    res.sendStatus(200);
   }
 }
 

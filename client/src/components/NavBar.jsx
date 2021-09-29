@@ -7,6 +7,7 @@ const Navbar = props => {
         <div className="container-fluid navcontainer">
         <Link style={{flex: '1'}} to="/" >Home</Link>
         <Link style={{flex: '1'}} to="/add" >Add</Link>
+        <Link style={{flex: '1'}} to="/api/users/logout" >Logout</Link>
         </div>
     </nav>
     );
