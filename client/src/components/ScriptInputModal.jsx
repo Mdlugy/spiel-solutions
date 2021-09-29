@@ -40,7 +40,7 @@ const ScriptInputModal = (props) => {
     <div>
       <button
         type="button"
-        className="btn btn-sm"
+        className="btn btn-sm shadow-none"
         data-toggle="modal"
         data-target="#exampleModalCenter"
       >

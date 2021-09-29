@@ -1,35 +1,28 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { navigate } from "@reach/router";
 import Delete from "../components/Delete";
-import EditNavbar from "../components/EditNavBar";
 import LinkedFrom from "../components/LinkedFrom";
-
-import { Link, navigate } from "@reach/router";
-import Modal from "../components/Modal";
-
-//usestate  setSpiel axios get by id
+import "./Edit.css";
 
 const titleStyle = {
   border: "1px solid lightgrey",
-  height: "20%",
+  minHeight: "100px",
   borderRadius: "35px 35px 35px 35px",
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
+  backgroundColor: "ghostwhite",
 };
 
 const snippetStyle = {
   border: "1px solid lightgrey",
-  height: "50%",
+  minHeight: "50%",
   borderRadius: "35px 35px 35px 35px",
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
-};
-const pagesStyle = {
-  height: "20%",
-  display: "flex",
-  justifyContent: "space-around",
+  backgroundColor: "aliceblue",
 };
 
 const Edit = (props) => {
@@ -67,7 +60,7 @@ const Edit = (props) => {
   };
 
   const navigateHome = () => {
-    navigate("/");
+    navigate("/home");
   };
 
   return (
@@ -76,20 +69,26 @@ const Edit = (props) => {
         <>
           <div className="container">
             <div
-              className="col-9 mt-4"
+              className="col-12 pt-4"
               style={{
                 justifyContent: "space-between",
                 display: "flex",
                 alignItems: "center",
-                padding: "0em 5em",
+                padding: "0em 2em",
               }}
             >
               <i
                 class="bi bi-house-fill"
-                style={{ fontSize: "30px", cursor: "pointer" }}
+                style={{
+                  fontSize: "30px",
+                  cursor: "pointer",
+                  color: "crimson",
+                }}
                 onClick={navigateHome}
               ></i>
-
+              {/* <h4 style={{ color: "indianred", textDecoration: "underline" }}>
+                Speil Solutions
+              </h4> */}
               {!spiel.isHead ? (
                 <div>
                   <Delete id={props.id} redirect={scriptHead} />
@@ -98,15 +97,11 @@ const Edit = (props) => {
                 <div></div>
               )}
             </div>
-            <div className="col-3"></div>
           </div>
-          <div className="editWrapper">
-            <div
-              className="container mt-5"
-              style={{ display: "flex", height: "80vh", gap: "2em" }}
-            >
+          <div className="pageContainer">
+            <div className="mt-5">
               <div
-                className="col-9 text-center"
+                className="script-body text-center"
                 style={{ display: "flex", flexDirection: "column", gap: "1em" }}
               >
                 <div style={titleStyle}>
@@ -115,79 +110,33 @@ const Edit = (props) => {
                 <div style={snippetStyle}>
                   <form
                     onSubmit={snippetSave}
-                    className="d-flex flex-column col-12 p-5"
+                    className="d-flex flex-column col-12 px-5"
+                    style={{ height: "100%" }}
                   >
                     <textarea
                       onChange={onChangeHandler}
                       value={spiel.snippet ? spiel.snippet : ""}
                       name="snippet"
-                      style={{ height: "200px" }}
+                      style={{
+                        height: "70%",
+                        marginTop: "1.5em",
+                        fontSize: "21px",
+                        padding: ".5em",
+                      }}
                     />
-                    <div></div>
+                    <button
+                      type="submit"
+                      className="btn btn-primary my-3"
+                      onClick={snippetSave}
+                    >
+                      Save
+                    </button>
                   </form>
                 </div>
-                <div
-                  className="col-12 mt-4"
-                  style={{
-                    justifyContent: "space-between",
-                    display: "flex",
-                    alignItems: "center",
-                    padding: "0em",
-                  }}
-                >
-                  <span className="my-auto">
-                    <i
-                      onClick={() => window.history.back()}
-                      className="bi bi-arrow-left"
-                      style={{
-                        fontSize: "2em",
-                        color: "#0E6EFC",
-                        cursor: "pointer",
-                      }}
-                    ></i>
-                  </span>
-
-                  {/* {spiel.pageArr.map((page, i) => {
-                    return (
-                      <div key={i} className="my-auto" style={{ width: "33%" }}>
-                        <Link to={`/view/${page.child_id}`}>
-                          {page.child_name}
-                        </Link>
-                      </div>
-                    );
-                  })} */}
-                  <span className="my-auto">
-                    <i
-                      onClick={() => window.history.forward()}
-                      className="bi bi-arrow-right"
-                      style={{
-                        fontSize: "2em",
-                        color: "#0E6EFC",
-                        cursor: "pointer",
-                      }}
-                    ></i>
-                  </span>
-                </div>
               </div>
-              <div
-                className="col-3 text-center mt-2"
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: "1em",
-                }}
-              >
-                <EditNavbar spiel={spiel} />
-                <LinkedFrom add={add} setAdd={setAdd} spiel={spiel} />
-
-                <button
-                  type="submit"
-                  className="btn btn-primary mt-4"
-                  onClick={snippetSave}
-                >
-                  Save
-                </button>
-              </div>
+            </div>
+            <div className="pages-modals mt-lg-5 mt-sm-0 pb-5 mb-5">
+              <LinkedFrom add={add} setAdd={setAdd} spiel={spiel} />
             </div>
           </div>
         </>

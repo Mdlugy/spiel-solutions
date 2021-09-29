@@ -10,7 +10,7 @@ const titleStyle = {
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
-  marginTop: "2em"
+  backgroundColor: "ghostwhite",
 };
 
 const snippetStyle = {
@@ -18,15 +18,17 @@ const snippetStyle = {
   height: "50%",
   borderRadius: "35px 35px 35px 35px",
   display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
+  // justifyContent: "center"
+  fontSize: "21px",
+  padding: "2.25em",
+  backgroundColor: "aliceblue",
 };
 const pagesStyle = {
   height: "20%",
   display: "flex",
   justifyContent: "space-between",
   padding: "0em 5em",
-  backgroundColor: "darkgray"
+  backgroundColor: "darkgray",
 };
 
 const One = (props) => {
@@ -40,7 +42,7 @@ const One = (props) => {
   }, [props.id]);
 
   const navigateHome = () => {
-    navigate("/");
+    navigate("/home");
   };
 
   return (
@@ -50,31 +52,37 @@ const One = (props) => {
           {" "}
           <div className="container">
             <div
-              className="col-9 mt-4"
+              className="col-12 pt-4"
               style={{
                 justifyContent: "space-between",
                 display: "flex",
                 alignItems: "center",
-                padding: "0em 5em",
+                padding: "0em 2em",
               }}
             >
               <i
                 class="bi bi-house-fill"
-                style={{ fontSize: "30px", cursor: "pointer" }}
+                style={{
+                  fontSize: "30px",
+                  cursor: "pointer",
+                  color: "crimson",
+                }}
                 onClick={navigateHome}
               ></i>
+              {/* <h4 style={{ color: "indianred", textDecoration: "underline" }}>
+                Speil Solutions
+              </h4> */}
               <Link to={`/edit/${spiel._id}`}>
                 <i className="bi bi-pencil" style={{ fontSize: "1.5em" }}></i>
               </Link>
             </div>
-            <div className="col-3"></div>
           </div>
           <div
             className="container mt-5"
-            style={{ display: "flex", height: "80vh", gap: "2em", backgroundColor: "darkgray"}}
+            style={{ display: "flex", height: "80vh", gap: "1em" }}
           >
             <div
-              className="col-9 text-center"
+              className="col-8 text-center"
               style={{ display: "flex", flexDirection: "column", gap: "1em" }}
             >
               <div style={titleStyle}>
@@ -93,39 +101,37 @@ const One = (props) => {
                   padding: "0em",
                 }}
               >
-                <span className="my-auto">
-                  <i
-                    onClick={() => window.history.back()}
-                    className="bi bi-arrow-left"
-                    style={{
-                      fontSize: "2em",
-                      color: "#0E6EFC",
-                      cursor: "pointer",
-                    }}
-                  ></i>
-                </span>
-
-                {spiel.pageArr.map((page, i) => {
-                  return (
-                    <div key={i} className="my-auto" style={{ width: "33%" }}>
-                      <Link to={`/view/${page.child_id}`}>
-                        {page.child_name}
-                      </Link>
-                    </div>
-                  );
-                })}
-                <span className="my-auto">
-                  <i
-                    onClick={() => window.history.forward()}
-                    className="bi bi-arrow-right"
-                    style={{
-                      fontSize: "2em",
-                      color: "#0E6EFC",
-                      cursor: "pointer",
-                    }}
-                  ></i>
-                </span>
-                {/* <ScriptInputModal add={add} setAdd={setAdd} /> */}
+                <div
+                  style={{
+                    overflowX: "scroll",
+                    display: "flex",
+                  }}
+                >
+                  {spiel.pageArr.map((page, i) => {
+                    return (
+                      <div
+                        key={i}
+                        className="my-auto mx-auto"
+                        style={{
+                          minWidth: "100px",
+                          maxWidth: "15%",
+                          textOverflow: "ellipsis",
+                          overflowY: "hidden",
+                          whiteSpace: "nowrap",
+                        }}
+                      >
+                        <Link
+                          style={{
+                            textDecoration: "none",
+                          }}
+                          to={`/view/${page.child_id}`}
+                        >
+                          {page.child_name.toUpperCase()}
+                        </Link>
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
             </div>
             <div
@@ -137,7 +143,7 @@ const One = (props) => {
               }}
             >
               {spiel.modalArr.map((modal, i) => (
-                <Modal key={i} modals={modal} />
+                <Modal key={modal.child_id} modals={modal} />
               ))}
             </div>
           </div>

@@ -4,7 +4,8 @@ import NavCard from "./NavCard";
 
 const EditNavbar = (props) => {
   const [links, setLinks] = useState(null);
-  console.log(links);
+
+  // console.log(links);
   // const [error,setError]=useState({})
   useEffect(() => {
     axios
@@ -17,7 +18,7 @@ const EditNavbar = (props) => {
   return (
     <>
       <nav className="nav flex-column">
-        Edit Pages:
+        Pages:
         {links
           ? links
               .filter((link) => link.element === "Page")
@@ -27,7 +28,7 @@ const EditNavbar = (props) => {
           : ""}
       </nav>
       <nav className="nav flex-column">
-        Edit Modals:
+        Modals:
         {links
           ? links
               .filter((link) => link.element === "Modal")

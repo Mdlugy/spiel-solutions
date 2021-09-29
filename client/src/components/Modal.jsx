@@ -1,31 +1,31 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Modal from "../components/Modal";
-import {Link} from "@reach/router"
+import { Link } from "@reach/router";
+
 const buttonStyle = {
   borderRadius: "35px 35px",
 };
 
-const Modals = (props) => {
+const Modals = ({ modals }) => {
   const [spiel, setSpiel] = useState(null);
   const [id, setID] = useState(null);
-  const { modals } = props;
 
-  useEffect(() => {
-    getSpielByModalID();
-  }, [id]);
-
-  const getSpielByModalID = () => {
+  const getSpielByModalID = (id) => {
     axios
       .get(`http://localhost:8000/api/spiels/${id}`)
       .then((res) => setSpiel(res.data))
+      .then(() => console.log(spiel))
       .catch((err) => console.log(err));
   };
 
   const handleClick = (modalID) => {
     setID(modalID);
-    console.log(spiel);
+    console.log(modalID);
   };
+
+  useEffect(() => {
+    getSpielByModalID(id);
+  }, [id]);
 
   return (
     <>
@@ -35,7 +35,7 @@ const Modals = (props) => {
         data-toggle="modal"
         data-target="#exampleModalCenter"
         style={buttonStyle}
-        onClick={(e) => handleClick(modals.child_id)}
+        onClick={() => handleClick(modals.child_id)}
       >
         {modals.child_name}
       </button>
@@ -54,11 +54,11 @@ const Modals = (props) => {
             <div
               className="modal-dialog modal-dialog-centered container"
               role="document"
-              style={{ maxWidth: "25%", marginRight: "0px" }}
+              style={{ maxWidth: "100%" }}
             >
               <div
-                className="modal-content"
-                style={{ borderRadius: "25px", alignSelf: "flex-end" }}
+                className="modal-content w-50 mx-auto"
+                style={{ borderRadius: "25px" }}
               >
                 <div className="modal-header">
                   <h5 className="modal-title" id="exampleModalLongTitle">
@@ -73,7 +73,7 @@ const Modals = (props) => {
                       color: "red",
                       fontSize: "1.25em",
                     }}
-                    onClick={(e) => {
+                    onClick={() => {
                       setSpiel(null);
                       setID(null);
                     }}
@@ -82,13 +82,21 @@ const Modals = (props) => {
                   </span>
                 </div>
                 <div className="modal-body">{spiel.snippet}</div>
-                {spiel.pageArr? spiel.pageArr.map((page, i) => {
-                  return (
-                    <div key={i} className="my-auto" style={{ width: "33%" }}>
-                      <Link to={`/view/${page.child_id}`}>{page.child_name}</Link>
-                    </div>
-                  );
-                }):""}
+                {spiel.pageArr
+                  ? spiel.pageArr.map((page, i) => {
+                      return (
+                        <div
+                          key={i}
+                          className="my-auto"
+                          style={{ width: "33%" }}
+                        >
+                          <Link to={`/view/${page.child_id}`}>
+                            {page.child_name}
+                          </Link>
+                        </div>
+                      );
+                    })
+                  : ""}
               </div>
             </div>
           </div>
