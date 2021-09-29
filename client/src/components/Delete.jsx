@@ -11,7 +11,7 @@ const Delete = (props) => {
   return (
     <i
       class="bi bi-trash "
-      style={{ fontSize: "30px", cursor: "pointer", color: "#DC3545" }}
+      style={{ fontSize: "1.5em", cursor: "pointer", color: "crimson" }}
       onClick={(e) => onDelete()}
       value="delete"
     ></i>

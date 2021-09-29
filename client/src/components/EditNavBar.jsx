@@ -5,7 +5,7 @@ import NavCard from "./NavCard";
 const EditNavbar = (props) => {
   const [links, setLinks] = useState(null);
 
-  console.log(links);
+  // console.log(links);
   // const [error,setError]=useState({})
   useEffect(() => {
     axios

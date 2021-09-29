@@ -22,6 +22,7 @@ const LinkedFrom = (props) => {
         {props.spiel.pageArr.map((link, i) => {
           return (
             <LinkCard
+              key={link._id}
               add={add}
               setAdd={setAdd}
               element={"Page"}
@@ -57,6 +58,7 @@ const LinkedFrom = (props) => {
             {props.spiel.modalArr.map((link, i) => {
               return (
                 <LinkCard
+                  key={link._id}
                   add={add}
                   setAdd={setAdd}
                   element={"Modal"}

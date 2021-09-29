@@ -13,7 +13,7 @@ class UserController {
           .cookie("usertoken", jwt.sign({ _id: user._id }, secret), {
             httpOnly: true,
           })
-          .json({ msg: "Success!", user: user });
+          .json({ msg: "Success!" });
 
         console.log("msg from backend successfully registered!");
       })
@@ -34,7 +34,7 @@ class UserController {
               res.cookie("usertoken", jwt.sign({ _id: user._id }, secret), {
                 httpOnly: true,
               });
-              res.json({ user: user.firstName });
+              res.json({ msg: "success!", user: user.firstName });
             }
           });
         }

@@ -8,18 +8,6 @@ import ScriptInputModal from "../components/ScriptInputModal";
 const Home = (props) => {
   const [spiels, setSpiels] = useState(null);
   const [add, setAdd] = useState(false);
-  const [loggedinuser, setLoggedInUser] = useState({});
-
-  useEffect(() => {
-    axios
-      .get("http://localhost:8000/api/users/getloggedinuser", {
-        withCredentials: true,
-      })
-      .then((res) => {
-        setLoggedInUser(res.data);
-      })
-      .catch((err) => console.log(err));
-  }, []);
 
   const handleScriptDelete = (spiel) => {
     console.log(spiel);
@@ -42,13 +30,12 @@ const Home = (props) => {
   };
 
   const navigateHome = () => {
-    navigate("/");
+    navigate("/home");
   };
 
   return (
     <>
       <div className="container">
-        <h3>Welcome, {loggedinuser.firstName} you made it</h3>
         <div
           className="col-12 pt-4"
           style={{
@@ -77,15 +64,9 @@ const Home = (props) => {
           justifyContent: "space-evenly",
           alignItems: "center",
           gap: ".2em",
-<<<<<<< HEAD
-          height: "100vh",
+          // height: "100vh",
           paddingTop: "3em",
           alignContent: "flex-start",
-=======
-          height: "80vh",
-          marginTop: "1em",
-          backgroundColor: "darkgray",
->>>>>>> baby_got_back
         }}
       >
         {spiels

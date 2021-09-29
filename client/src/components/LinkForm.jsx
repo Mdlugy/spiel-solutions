@@ -80,7 +80,9 @@ const LinkForm = (props) => {
               <select onChange={onselectHandler} className="w-100">
                 <option />
                 {options.map((option) => (
-                  <option value={option._id}>{option.name}</option>
+                  <option key={option._id} value={option._id}>
+                    {option.name}
+                  </option>
                 ))}
               </select>{" "}
               <div className="w-100">

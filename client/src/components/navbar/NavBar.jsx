@@ -21,7 +21,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function Navbar() {
+const Navbar = (props) => {
   const classes = useStyles();
   const [state, setState] = React.useState({
     // top: false,
@@ -61,17 +61,31 @@ export default function Navbar() {
         ))}
       </List>
       <Divider />
-      <span>----Add conditional isLoggedIn</span>
 
       <List>
-        {["Sign In", "Sign out"].map((text, index) => (
-          <ListItem button key={text}>
+        {/* <ListItem button>
+          {!props.user ? (
+            <ListItemText primary="Login" />
+          ) : (
+            <ListItemText primary="Logout" />
+          )}
+        </ListItem> */}
+
+        {props.user ? (
+          <ListItem button>
             <ListItemIcon>
               {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
             </ListItemIcon>
-            <ListItemText primary={text} />
+            <ListItemText primary="Logout" />
           </ListItem>
-        ))}
+        ) : (
+          <ListItem button>
+            <ListItemIcon>
+              {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
+            </ListItemIcon>
+            <ListItemText primary="Login" />
+          </ListItem>
+        )}
       </List>
     </div>
   );
@@ -87,7 +101,7 @@ export default function Navbar() {
               alignItems: "center",
             }}
           >
-            <span>Welcome, Kelvin</span>
+            <span>Welcome, {props.user.firstName}</span>
             <Button onClick={toggleDrawer(anchor, true)}>
               <MenuIcon />
             </Button>
@@ -99,8 +113,11 @@ export default function Navbar() {
           >
             {list(anchor)}
           </Drawer>
+          <Divider />
         </React.Fragment>
       ))}
     </div>
   );
-}
+};
+
+export default Navbar;

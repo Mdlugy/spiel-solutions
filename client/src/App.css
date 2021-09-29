@@ -9,7 +9,7 @@
   text-align: center;
   background-color: #c7cad5;
   height: 100vh;
-  overflow: hidden;
+  overflow-y: scroll;
   background: rgb(245, 245, 245);
   background: radial-gradient(
     circle,
@@ -94,15 +94,13 @@ h1 {
   margin-bottom: 1em;
 }
 
-#login  {
+#login {
   color: darkblue;
 }
 
 #registration {
   color: darkcyan;
-  
 }
-
 
 #container {
   display: flex;
@@ -121,7 +119,7 @@ h1 {
   font-size: 80%;
 }
 
-#login_box{
+#login_box {
   width: 30%;
   border: 2px solid black;
   padding: 1em;

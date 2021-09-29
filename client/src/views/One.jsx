@@ -10,11 +10,7 @@ const titleStyle = {
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
-<<<<<<< HEAD
   backgroundColor: "ghostwhite",
-=======
-  marginTop: "2em"
->>>>>>> baby_got_back
 };
 
 const snippetStyle = {
@@ -32,7 +28,7 @@ const pagesStyle = {
   display: "flex",
   justifyContent: "space-between",
   padding: "0em 5em",
-  backgroundColor: "darkgray"
+  backgroundColor: "darkgray",
 };
 
 const One = (props) => {
@@ -46,7 +42,7 @@ const One = (props) => {
   }, [props.id]);
 
   const navigateHome = () => {
-    navigate("/");
+    navigate("/home");
   };
 
   return (
@@ -66,7 +62,11 @@ const One = (props) => {
             >
               <i
                 class="bi bi-house-fill"
-                style={{ fontSize: "30px", cursor: "pointer" }}
+                style={{
+                  fontSize: "30px",
+                  cursor: "pointer",
+                  color: "crimson",
+                }}
                 onClick={navigateHome}
               ></i>
               {/* <h4 style={{ color: "indianred", textDecoration: "underline" }}>
@@ -79,11 +79,7 @@ const One = (props) => {
           </div>
           <div
             className="container mt-5"
-<<<<<<< HEAD
             style={{ display: "flex", height: "80vh", gap: "1em" }}
-=======
-            style={{ display: "flex", height: "80vh", gap: "2em", backgroundColor: "darkgray"}}
->>>>>>> baby_got_back
           >
             <div
               className="col-8 text-center"

@@ -60,7 +60,7 @@ const Edit = (props) => {
   };
 
   const navigateHome = () => {
-    navigate("/");
+    navigate("/home");
   };
 
   return (
@@ -79,7 +79,11 @@ const Edit = (props) => {
             >
               <i
                 class="bi bi-house-fill"
-                style={{ fontSize: "30px", cursor: "pointer" }}
+                style={{
+                  fontSize: "30px",
+                  cursor: "pointer",
+                  color: "crimson",
+                }}
                 onClick={navigateHome}
               ></i>
               {/* <h4 style={{ color: "indianred", textDecoration: "underline" }}>
@@ -94,10 +98,7 @@ const Edit = (props) => {
               )}
             </div>
           </div>
-          <div
-            className="pageContainer"
-            style={{ height: "100vh", overflowY: "scroll" }}
-          >
+          <div className="pageContainer">
             <div className="mt-5">
               <div
                 className="script-body text-center"
