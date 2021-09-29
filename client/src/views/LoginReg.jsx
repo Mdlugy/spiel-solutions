@@ -14,8 +14,8 @@ const LoginReg = () => {
         <div className="landingPage">
             <h1><span id="login">Login</span> and <span id= 'registration'>Registration</span></h1>
             <div id = "container">
-                <Reg />
-                <Login />
+                <Reg stateRefresh={stateRefresh} />
+                <Login stateRefresh={stateRefresh} />
             </div>
         </div>
 

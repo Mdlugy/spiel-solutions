@@ -26,18 +26,15 @@ function App() {
 
   return (
     <div className="App">
-      {loggedinuser._id ? (
         <>
           <Navbar user={loggedinuser} />
           <Router>
+            <LoginReg path="/" exact />
             <Home setAdd={setAdd} user={loggedinuser} path="/home" />
             <Edit path="/edit/:id" />
             <One path="/view/:id" />
           </Router>
         </>
-      ) : (
-        <LoginReg path="/" exact />
-      )}
     </div>
   );
 }

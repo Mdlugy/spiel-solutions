@@ -19,7 +19,7 @@ const Home = (props) => {
         setLoggedInUser(res.data);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [loggedinuser]);
 
   const handleScriptDelete = (spiel) => {
     console.log(spiel);
