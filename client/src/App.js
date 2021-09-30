@@ -20,14 +20,13 @@ function App() {
       })
       .then((res) => {
         setLoggedInUser(res.data);
-        console.log(res.data)
+        console.log(res.data);
       })
       .catch((err) => console.log(err));
   }, []);
 
   return (
     <div className="App">
-<<<<<<< HEAD
       <>
         <Navbar user={loggedinuser} />
         <Router>
@@ -37,17 +36,6 @@ function App() {
           <LoginReg user={loggedinuser} path="/" exact />
         </Router>
       </>
-=======
-        <>
-          <Navbar user={loggedinuser} />
-          <Router>
-            <LoginReg path="/" exact />
-            <Home setAdd={setAdd} user={loggedinuser} path="/home" />
-            <Edit path="/edit/:id" />
-            <One path="/view/:id" />
-          </Router>
-        </>
->>>>>>> 906590487f9d1523384102a6391ff0b8f4741150
     </div>
   );
 }

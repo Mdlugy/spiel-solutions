@@ -52,17 +52,10 @@ class UserController {
   }
 
   logout(req, res) {
-<<<<<<< HEAD
     res
       .clearCookie("usertoken", { path: "/" })
       .status(200)
       .json({ msg: "cookies cleared" });
-=======
-    console.log("logout in controller");
-    // res.clearCookie('usertoken', {path:'/', domain:"localhost", expires: new Date() });
-    res.cookie('usertoken', "", {path:'/', domain:"localhost", expires: new Date() })
-    res.sendStatus(200);
->>>>>>> 906590487f9d1523384102a6391ff0b8f4741150
   }
 }
 
