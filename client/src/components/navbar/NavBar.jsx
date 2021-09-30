@@ -11,6 +11,8 @@ import ListItemText from "@material-ui/core/ListItemText";
 // import InboxIcon from "@material-ui/icons/MoveToInbox";
 // import MailIcon from "@material-ui/icons/Mail";
 import MenuIcon from "@mui/icons-material/Menu";
+import axios from 'axios';
+import {navigate} from '@reach/router'
 
 import axios from "axios";
 import { navigate } from "@reach/router";
@@ -33,6 +35,7 @@ const Navbar = (props) => {
     right: false,
   });
 
+<<<<<<< HEAD
   // const logout = () => {
   //   axios
   //     .get("http://localhost:8000/api/users/logout")
@@ -56,6 +59,14 @@ const Navbar = (props) => {
       });
     navigate("/");
   };
+=======
+  const logout = () => {
+    axios.get("http://localhost:8000/api/users/logout",{}, {withCredentials:true})
+    .then((res) => console.log(res))
+    .catch((err) => console.log(err))
+    navigate("/")
+  }
+>>>>>>> 906590487f9d1523384102a6391ff0b8f4741150
 
   const toggleDrawer = (anchor, open) => (event) => {
     if (
