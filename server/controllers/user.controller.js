@@ -31,15 +31,12 @@ class UserController {
               console.log("invalid login");
               res.json({ msg: "Invalid login attempt" }); //incorrect pw
             } else {
-              res
-                .cookie("usertoken", jwt.sign({ _id: user._id }, secret), {
-                  httpOnly: true,
-                  path: "/",
-                  expires: new Date(new Date().getTime() + 100 * 1000),
-                })
-                .send("cookie being initialized");
-
-              // res.json({ msg: "success!", user: user.firstName });
+              res.cookie("usertoken", jwt.sign({ _id: user._id }, secret), {
+                httpOnly: true,
+                path: "/",
+                expires: new Date(new Date().getTime() + 100 * 1000),
+              });
+              res.json({ msg: "success!", user: user.firstName });
             }
           });
         }
@@ -55,7 +52,10 @@ class UserController {
   }
 
   logout(req, res) {
-    res.clearCookie("usertoken", { path: "/" }).status(200).send("Ok.");
+    res
+      .clearCookie("usertoken", { path: "/" })
+      .status(200)
+      .json({ msg: "cookies cleared" });
   }
 }
 
