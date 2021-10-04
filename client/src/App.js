@@ -28,12 +28,13 @@ function App() {
   return (
     <div className="App">
       <>
-        <Navbar user={loggedinuser} />
+        {/* <Navbar user={loggedinuser} /> */}
         <Router>
-          <Home setAdd={setAdd} user={loggedinuser} path="/home" />
+          <Home setAdd={setAdd}  path="/" /> 
+          {/* user={loggedinuser} */}
           <Edit path="/edit/:id" />
           <One path="/view/:id" />
-          <LoginReg user={loggedinuser} path="/" exact />
+          {/* <LoginReg user={loggedinuser} path="/" exact /> */}
         </Router>
       </>
     </div>

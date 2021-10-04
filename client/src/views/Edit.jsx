@@ -60,7 +60,7 @@ const Edit = (props) => {
   };
 
   const navigateHome = () => {
-    navigate("/home");
+    navigate("/");
   };
 
   return (

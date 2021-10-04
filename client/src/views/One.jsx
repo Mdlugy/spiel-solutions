@@ -42,7 +42,7 @@ const One = (props) => {
   }, [props.id]);
 
   const navigateHome = () => {
-    navigate("/home");
+    navigate("/");
   };
 
   return (
