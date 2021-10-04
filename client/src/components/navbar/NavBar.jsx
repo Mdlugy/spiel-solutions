@@ -36,7 +36,6 @@ const Navbar = (props) => {
     axios
       .get(
         "http://localhost:8000/api/users/logout",
-        {},
         { withCredentials: true }
       )
       .then((res) => console.log(res))
