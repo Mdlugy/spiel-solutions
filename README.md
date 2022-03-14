@@ -6,3 +6,7 @@ by dynamically serving them appropriate snippets of a sales script(spiels) based
 
 One of the more interesting challenges of this project was figuring out how to build relationships between our spiels in MongoDB.
 This was done by adding a page array and modal array to each spiel which could then be used to pull the appropriate objects through our API onto each page. 
+
+to run the application
+run npm install in the client folder
+then run npm start
